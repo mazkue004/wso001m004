@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="generator"
+		content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+		<link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Muli:300,400" rel="stylesheet" type="text/css">
+		<style>
+			body {
+			font: 400 16px 'Muli', sans-serif !important;
+			margin: 0;
+			padding: 0;
+			}
+		</style>
+		<title>Sign up</title>
+		<script type="text/javascript">
+			function ikusBalioak(){
+				var sAux="";
+				var frm=document.getElementById("erregistro");
+				for(i=1;i<frm.elements.length;i++){
+					sAux +="IZENA: " + frm.elements[i].name+"";
+					sAux +=" BALIOA: " + frm.elements[i].value+"\n";
+				}
+				alert(sAux);
+			}
+		</script>
+	</head>
+	<body>
+		<form id="erregistro" name="erregistro" onsubmit="ikusBalioak()">
+			Izen-abizenak*: <input type="text" name="izena" id="izena" required/> </br>
+			Eposta elektronikoa*: <input type="text" name="eposta" id="eposta" required /> </br>
+			Password*: <input type="password" name="pass" id="pass" required /> </br> 
+			Telefono zenbakia*: <input type="text" name="telefonoa" id="telefonoa" required /> </br>
+			Espezialitatea*: 
+			<select name="espezialitatea" id="espezialitatea" required="">
+				<option value="hardware">Hardware</option>
+				<option value="software">Software</option>
+				<option value="konputazioa">Konputazioa</option>
+			</select></br>
+			Interesa duzun teknologiak eta erremintak: </br><textarea name="interesak" id="interesak" cols=40 rows=6></textarea> </br>
+			Argazki bat igo nahi duzu? <input type='file' name="argazkia" id="argazkia"/></br>
+			<input type="submit" value="Submit"/>
+		</form>
+	</body>
+</html>
