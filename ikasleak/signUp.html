@@ -16,24 +16,43 @@
 		<script type="text/javascript">
 			function ikusBalioak(){
 				var sAux="";
-				var frm=document.getElementById("erregistro");
-				for(i=0;i<5/*i<frm.elements.length-1*/;i++){
-					sAux +="IZENA: " + frm.elements[i].name+"";
-					sAux +=" BALIOA: " + frm.elements[i].value+"\n";
-					if(frm.elements[i].value.length<1){
-						alert(frm.elements[i].name + " falta da");
-						return false;
-					}
-				}alert(sAux);
-				
+				var izena = document.getElementById("izena");
+				var eposta = document.getElementById("eposta");
+				var pass = document.getElementById("pass");
+				var pass1 = document.getElementById("pass1");
+				var tel = document.getElementById("telefonoa");
+				var esp = document.getElementById("espezialitatea");
+				if((izena.value.legth < 1)  ||(eposta.value.length < 1) || (pass.value.length < 1) || (tel.value.length < 1) || (esp.value.length < 1)){
+					alert("Derrigorrezko eremu guztiak ez dituzu bete")
+					return false;
+				}
+				if(/[0-9]+/.test(izena.value)){
+					alert("Izena ez da egokia: " + izena.value);
+					return false;
+				}
+				if(/[a-zA-Z]+[0-9]{3}\@ikasle\.ehu\.eu?s/.test(eposta.value) == false){
+					alert("Eposta ez da egokia, ehu001@ikasle.ehu.eus beharko luke: " + eposta.value)
+					return false;
+				}
+				if(pass.value != pass1.value){
+					alert("Bi pasahitzak berdinak izan behar dute");
+					return false;
+				}
+				if(/(6|7|9)[0-9]{8}/.test(telefonoa.value) == false){
+					alert("Telefonoa ez da zuzena, 654654654 beharko luke: " + telefonoa.value);
+					return false;
+				}
+				alert("Formularioa ondo bidali da.")
 			}
+			
 		</script>
 	</head>
 	<body>
 		<form id="erregistro" name="erregistro" method="POST" action="igorriSignUp.php" onsubmit="return ikusBalioak()">
 			Izen-abizenak*: <input type="text" name="izena" id="izena"/> <br/>
 			Eposta elektronikoa*: <input type="text" name="eposta" id="eposta"/> <br/>
-			Password*: <input type="password" name="pass" id="pass"/> <br/> 
+			Password*: <input type="password" name="pass" id="pass"/> <br/>
+			Errepikatu password-a: <input type="password" name="pass1" id="pass1"/> <br/>
 			Telefono zenbakia*: <input type="text" name="telefonoa" id="telefonoa"/> <br/>
 			Espezialitatea*: 
 			<select name="espezialitatea" id="espezialitatea">
