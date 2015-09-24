@@ -17,26 +17,22 @@
 			function ikusBalioak(){
 				var sAux="";
 				var frm=document.getElementById("erregistro");
-				for(i=0;i<5/*i<frm.elements.length-1*/;i++){
+				for(i=0;i<frm.elements.length-1;i++){
 					sAux +="IZENA: " + frm.elements[i].name+"";
 					sAux +=" BALIOA: " + frm.elements[i].value+"\n";
-					if(frm.elements[i].value.length<1){
-						alert(frm.elements[i].name + " falta da");
-						return false;
-					}
-				}alert(sAux);
-				
+				}
+				alert(sAux);
 			}
 		</script>
 	</head>
 	<body>
-		<form id="erregistro" name="erregistro" method="POST" action="igorriSignUp.php" onsubmit="return ikusBalioak()">
-			Izen-abizenak*: <input type="text" name="izena" id="izena"/> <br/>
-			Eposta elektronikoa*: <input type="text" name="eposta" id="eposta"/> <br/>
-			Password*: <input type="password" name="pass" id="pass"/> <br/> 
-			Telefono zenbakia*: <input type="text" name="telefonoa" id="telefonoa"/> <br/>
+		<form id="erregistro" name="erregistro" onsubmit="ikusBalioak()">
+			Izen-abizenak*: <input type="text" name="izena" id="izena" required/> <br/>
+			Eposta elektronikoa*: <input type="text" name="eposta" id="eposta" required /> <br/>
+			Password*: <input type="password" name="pass" id="pass" required /> <br/> 
+			Telefono zenbakia*: <input type="text" name="telefonoa" id="telefonoa" required /> <br/>
 			Espezialitatea*: 
-			<select name="espezialitatea" id="espezialitatea">
+			<select name="espezialitatea" id="espezialitatea" required="">
 				<option value="hardware">Hardware</option>
 				<option value="software">Software</option>
 				<option value="konputazioa">Konputazioa</option>
