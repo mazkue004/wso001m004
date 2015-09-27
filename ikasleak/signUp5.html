@@ -19,7 +19,7 @@
 				var izena = document.getElementById("izena");
 				var pass = document.getElementById("pass");
 				var pass1 = document.getElementById("pass1");
-				var esp = document.getElementById("espezialitatea");
+				
 				
 			}
 			function espezialitateaGorde(besteEspezialitatea){
@@ -53,18 +53,16 @@
 			
 			function besteEspezialitatea(){
 			//Beste espezialitatea
-				/*if(esp.value=="bestea"){
+				var esp = document.getElementById("espezialitatea");
+				if(esp.value=="bestea"){
+				
 					if(document.getElementById("besteEsp").innerHTML == ""){
 						document.getElementById("besteEsp").innerHTML="Sartu zure espezialitatea(*): <input type=\"text\" name=\"besteEspezialitatea\" id=\"besteEspezialitatea\"/>";
 					}
 					return espezialitateaGorde(document.getElementById("besteEspezialitatea"));
-				}*/
-				document.getElementById("besteEsp").innerHTML="<input type=input type=\"text\" name=\"besteEspezialitatea\" id=\"besteEspezialitatea\"/>;
+				}
 			}
 			
-			function argazkiaGehitu(){
-				document.getElementById("argazki").innerHTML="<img src="onintza.jpg" alt="" />";
-			}
 		</script>
 	</head>
 	<body>
@@ -76,18 +74,18 @@
 			Errepikatu password-a(*): <input type="password" name="pass1" id="pass1" required onchange="return pasahitzBerdina()"/> <br/><br/>
 			Telefono zenbakia(*): <input type="tel" name="telefonoa" id="telefonoa" required pattern="(6|7|9)[0-9]{8}" placeholder="654123789"/> <br/><br/>
 			Espezialitatea(*): 
-			<select name="espezialitatea" id="espezialitatea" required onchange="return besteEspezialitatea"">
+			<select name="espezialitatea" id="espezialitatea" required onchange="besteEspezialitatea()">
 				<option value="hardware">Hardware</option>
 				<option value="software">Software</option>
 				<option value="konputazioa">Konputazioa</option>
 				<option value="bestea" >Beste bat</option>
 			</select><br/><br/>
-			<input type="hidden" id="besteEsp" name="besteEsp" />
+			<p id="besteEsp" name="besteEsp" ></p>
 			Interesa duzun teknologiak eta erremintak: <br/><textarea name="interesak" id="interesak" cols=40 rows=6></textarea><br/><br/>
 			Argazki bat igo nahi duzu? <input type='file' name="argazkia" id="argazkia" onchange="return argazkiaGehitu()"/><br/><br/>
 			<img src="" alt="" id="argazki" name="argazki"/>
 			<input type="submit" value="Submit"/>
 		</form>
-		<a  id=home href='layout.html'>Home</a>
+		<a  id="home" href='layout.html'>Home</a>
 	</body>
 	</html>
