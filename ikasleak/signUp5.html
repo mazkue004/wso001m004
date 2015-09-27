@@ -14,60 +14,78 @@
 		</style>
 		<title>Sign up</title>
 		<script type="text/javascript">
-			function ikusBalioak(){
+		
+			function ikusBalioak(){ 
 				var izena = document.getElementById("izena");
 				var pass = document.getElementById("pass");
 				var pass1 = document.getElementById("pass1");
 				var esp = document.getElementById("espezialitatea");
-				//Izena hizkiz osatua eta izena eta bi abizen derrigorrez
-				if((/[0-9]+/.test(izena.value)) || (izena.value.split(/\s/g).length != 3)){
-					alert("Izen-abizenak ez dira egokiak: " + izena.value);
-					return false;
-				}
-				//Pasahitzak gutxienez 6 karaktere
-				if(pass.value.length < 6){
-					alert("Pasahitzak gutxienez 6 karaktere izan behar ditu");
-					return false;
-				}
-				//Bi pasahitzak berdinak
-				if(pass.value != pass1.value){
-					alert("Bi pasahitzak berdinak izan behar dute");
-					return false;
-				}
-				//Beste espezialitatea
-				if(esp.value=="bestea"){
-					if(document.getElementById("besteEsp").innerHTML == ""){
-						document.getElementById("besteEsp").innerHTML="Sartu zure espezialitatea(*): <input type=\"text\" name=\"besteEspezialitatea\" id=\"besteEspezialitatea\"/>";
-					}
-					return espezialitateaGorde(document.getElementById("besteEspezialitatea"));
-				}
+				
 			}
 			function espezialitateaGorde(besteEspezialitatea){
 				if(besteEspezialitatea.value.length < 1){
 					alert("Espezialitatea idatzi behar duzu");
 					return false;
 				}
-			return true;}
+				return true;
+			}
+			
+			function pasahitza(){
+				if(pass.value.length < 6){
+					alert("Pasahitzak gutxienez 6 karaktere izan behar ditu");
+					return false;
+				}
+			}
+			
+			function pasahitzBerdina(){
+				if(pass.value != pass1.value){
+					alert("Bi pasahitzak berdinak izan behar dute");
+					return false;
+				}
+			}
+			
+			function izenaBalioztatu(){
+				if((/[0-9]+/.test(izena.value))||(izena.value.split(/\s/g).length != 3)){
+					alert("Izen-abizenak ez dira egokiak: " + izena.value);
+					return false;
+				}
+			}
+			
+			function besteEspezialitatea(){
+			//Beste espezialitatea
+				/*if(esp.value=="bestea"){
+					if(document.getElementById("besteEsp").innerHTML == ""){
+						document.getElementById("besteEsp").innerHTML="Sartu zure espezialitatea(*): <input type=\"text\" name=\"besteEspezialitatea\" id=\"besteEspezialitatea\"/>";
+					}
+					return espezialitateaGorde(document.getElementById("besteEspezialitatea"));
+				}*/
+				document.getElementById("besteEsp").innerHTML="<input type=input type=\"text\" name=\"besteEspezialitatea\" id=\"besteEspezialitatea\"/>;
+			}
+			
+			function argazkiaGehitu(){
+				document.getElementById("argazki").innerHTML="<img src="onintza.jpg" alt="" />";
+			}
 		</script>
 	</head>
 	<body>
 		<br/>
 		<form id="erregistro" name="erregistro" method="POST" action="igorriSignUp.php" onsubmit="return ikusBalioak()">
-			Izen-abizenak(*): <input type="text" name="izena" id="izena" required/> <br/><br/>
+			Izen-abizenak(*): <input type="text" name="izena" id="izena" required placeholder="Izena Abizena1 Abizena2" onchange="return izenaBalioztatu()"/> <br/><br/>
 			Eposta elektronikoa(*): <input type="email" name="eposta" id="eposta" required pattern="[a-zA-Z]+[0-9]{3}\@ikasle\.ehu\.eu?s" placeholder="ehu001@ikasle.ehu.es"/> <br/><br/>
-			Password(*): <input type="password" name="pass" id="pass" required/> <br/><br/>
-			Errepikatu password-a(*): <input type="password" name="pass1" id="pass1" required/> <br/><br/>
+			Password(*): <input type="password" name="pass" id="pass" required onchange="return pasahitza()"/> <br/><br/>
+			Errepikatu password-a(*): <input type="password" name="pass1" id="pass1" required onchange="return pasahitzBerdina()"/> <br/><br/>
 			Telefono zenbakia(*): <input type="tel" name="telefonoa" id="telefonoa" required pattern="(6|7|9)[0-9]{8}" placeholder="654123789"/> <br/><br/>
 			Espezialitatea(*): 
-			<select name="espezialitatea" id="espezialitatea" required>
+			<select name="espezialitatea" id="espezialitatea" required onchange="return besteEspezialitatea"">
 				<option value="hardware">Hardware</option>
 				<option value="software">Software</option>
 				<option value="konputazioa">Konputazioa</option>
-				<option value="bestea">Beste bat</option>
+				<option value="bestea" >Beste bat</option>
 			</select><br/><br/>
-			<p id="besteEsp" name="besteEsp"></p>
+			<input type="hidden" id="besteEsp" name="besteEsp" />
 			Interesa duzun teknologiak eta erremintak: <br/><textarea name="interesak" id="interesak" cols=40 rows=6></textarea><br/><br/>
-			Argazki bat igo nahi duzu? <input type='file' name="argazkia" id="argazkia"/><br/><br/>
+			Argazki bat igo nahi duzu? <input type='file' name="argazkia" id="argazkia" onchange="return argazkiaGehitu()"/><br/><br/>
+			<img src="" alt="" id="argazki" name="argazki"/>
 			<input type="submit" value="Submit"/>
 		</form>
 		<a  id=home href='layout.html'>Home</a>
