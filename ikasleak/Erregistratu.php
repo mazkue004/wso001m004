@@ -1,3 +1,18 @@
+<?php
+	mysql_connect("localhost","root","") or die(mysql_error());
+	mysql_select_db("quiz") or die(mysql_error());
+	
+	$erabepost = mysql_query("select * from erabiltzaile");
+	while($row = mysql_fetch_array($erabepost)){
+		echo '<p>sdlkfasj</p><br/>';
+		echo '<p>'.$row.'</p>';
+	}
+	
+	
+	
+	
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -16,19 +31,6 @@
 		</style>
 	</head>
 	<body>
-		<?php
-			mysql_connect("localhost","root","") or die(mysql_error());
-			mysql_select_db("quiz") or die(mysql_error());
-			
-			$erabepost = mysql_query("select * from erabiltzailea");
-			$row = mysql_fetch_array($erabepost);
-				echo '<p>sdlkfasj</p><br/>';
-				echo '<p>'.$row['Eposta'].'</p>';
-			
-			
-			
-			
-			
-			?>
+		
 	</body>
 </html>
