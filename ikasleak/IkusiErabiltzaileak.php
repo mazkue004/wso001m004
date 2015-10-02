@@ -5,10 +5,9 @@
 	
 	
 	$erabiltzaile = mysql_query("select * from erabiltzaile");
-	echo '<table border=1><tr><th> IZENA </th><th> EPOSTA </th></tr>';
+	echo '<table border=1><tr><th> IZENA </th><th> 1. ABIZENA </th><th> 2. ABIZENA </th><th> EPOSTA </th><th> TELEFONOA </th><th> ESPEZIALITATEA </th><th> ERREMINTAK </th><th> ARGAZKIA </th></tr>';
 	while( $row = mysql_fetch_array( $erabiltzaile) ) {
-		echo '<tr><td>'.$row['Izena'].'</td> <td>'. $row['Eposta'].
-		'</td></tr>';
+		echo '<tr><td>'.$row['Izena'].'</td> <td>'. $row['Abizena1'].'</td> <td>'.$row['Abizena2'].'</td><td>'.$row['Eposta'].'</td><td>'.$row['Telefonoa'].'</td><td>'.$row['Espezialitatea'].'</td><td>'.$row['Erremintak'].'</td><td>'.$row['Argazkia'].'</td></tr>';
 	}
 	echo '</table>';
 	
