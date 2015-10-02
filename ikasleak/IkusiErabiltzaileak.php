@@ -4,21 +4,14 @@
 	
 	
 	
-	$erabepost = mysql_query("select Eposta from erabiltzaile where Eposta='$_POST[eposta]'");
-	echo sizeof($erabepost);
-	if(sizeof($erabepost)==1){
-		$sql="INSERT INTO erabiltzaile(Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Espezialitatea, Erremintak, Argazkia) VALUES ('$_POST[izena]','$_POST[abizena1]','$_POST[abizena2]','$_POST[eposta]','$_POST[pass]','$_POST[telefonoa]','$_POST[espezialitatea]','$_POST[interesak]','$_POST[argazkia]')";
-		if(!mysql_query($sql)){
-			die('Errorea:  '.mysql_error());
-		}
-		echo 'Ondo gorde da';
-		echo '<a  id="ikusi" href="IkusiErabiltzaileak.php">Ikusi erabiltzaileak</a>';
-		mysql_close();
-		
-	}else{
-		echo 'Eposta existitzen da, aldatu.';
+	$erabiltzaile = mysql_query("select * from erabiltzaile");
+	echo '<table border=1><tr><th> IZENA </th><th> EPOSTA </th></tr>';
+	while( $row = mysql_fetch_array( $erabiltzaile) ) {
+		echo '<tr><td>'.$row['Izena'].'</td> <td>'. $row['Eposta'].
+		'</td></tr>';
 	}
-		
+	echo '</table>';
+	
 ?>
 
 <!DOCTYPE html>
