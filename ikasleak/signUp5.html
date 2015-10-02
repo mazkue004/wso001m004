@@ -16,7 +16,6 @@
 		<script type="text/javascript">
 		
 			function ikusBalioak(){ 
-				var izena = document.getElementById("izena");
 				var pass = document.getElementById("pass");
 				var pass1 = document.getElementById("pass1");
 				
@@ -30,13 +29,6 @@
 				return true;
 			}
 			
-			function pasahitza(){
-				if(pass.value.length < 6){
-					alert("Pasahitzak gutxienez 6 karaktere izan behar ditu");
-					return false;
-				}
-			}
-			
 			function pasahitzBerdina(){
 				if(pass.value != pass1.value){
 					alert("Bi pasahitzak berdinak izan behar dute");
@@ -44,12 +36,6 @@
 				}
 			}
 			
-			function izenaBalioztatu(){
-				if((/[0-9]+/.test(izena.value))||(izena.value.split(/\s/g).length != 3)){
-					alert("Izen-abizenak ez dira egokiak: " + izena.value);
-					return false;
-				}
-			}
 			
 			function besteEspezialitatea(){
 			//Beste espezialitatea
@@ -68,9 +54,11 @@
 	<body>
 		<br/>
 		<form id="erregistro" name="erregistro" method="POST" action="Erregistratu.php" onsubmit="return ikusBalioak()">
-			Izen-abizenak(*): <input type="text" name="izena" id="izena" required placeholder="Izena Abizena1 Abizena2" onchange="return izenaBalioztatu()"/> <br/><br/>
+			Izen-abizenak(*): <input type="text" name="izena" id="izena" required placeholder="Izena" pattern="[A-Z][a-zA-Z]*" />
+			<input type="text" name="abizena1" id="abizena1" required placeholder="Abizena"  pattern="[A-Z][a-zA-Z]*"/>
+			<input type="text" name="abizena2" id="abizena2" required placeholder="Abizena" pattern="[A-Z][a-zA-Z]*" /><br/><br/>
 			Eposta elektronikoa(*): <input type="email" name="eposta" id="eposta" required pattern="[a-zA-Z]+[0-9]{3}\@ikasle\.ehu\.eu?s" placeholder="ehu001@ikasle.ehu.es"/> <br/><br/>
-			Password(*): <input type="password" name="pass" id="pass" required onchange="return pasahitza()"/> <br/><br/>
+			Password(*): <input type="password" name="pass" id="pass" required  pattern=".{6,}"/> <br/><br/>
 			Errepikatu password-a(*): <input type="password" name="pass1" id="pass1" required onchange="return pasahitzBerdina()"/> <br/><br/>
 			Telefono zenbakia(*): <input type="tel" name="telefonoa" id="telefonoa" required pattern="(6|7|9)[0-9]{8}" placeholder="654123789"/> <br/><br/>
 			Espezialitatea(*): 
