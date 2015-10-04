@@ -5,11 +5,12 @@
 	
 	
 	$erabiltzaile = mysql_query("select * from erabiltzaile");
-	echo '<div class="container-fluid inner">
-			<table class="tableizer-table">
-				<tr class="tableizer-firstrow"><th>Izena</th><th>1 Abizena</th><th>2 Abizena</th><th>Eposta</th><th>Telefono zenbakia</th><th>Espezialitatea</th><th>Interesak</th><th>Argazkia</th></tr>';
+
+	echo '<div class="container-fluid inner"><table class="tableizer-table">';
+	echo '<tr class="tableizer-firstrow"><th> IZENA </th><th> 1. ABIZENA </th><th> 2. ABIZENA </th><th> EPOSTA </th><th> TELEFONOA </th><th> ESPEZIALITATEA </th><th> ERREMINTAK </th><th> ARGAZKIA </th></tr>';
 	while( $row = mysql_fetch_array( $erabiltzaile) ) {
-		echo '<tr><td>'.$row['Izena'].'</td><td>'. $row['Abizena1'].'</td><td>'.$row['Abizena2'].'</td><td>'.$row['Eposta'].'</td><td>'.$row['Telefonoa'].'</td><td>'.$row['Espezialitatea'].'</td><td>'.$row['Erremintak'].'</td><td>'.$row['Argazkia'].'</td></tr>';
+		echo '<tr><td>'.$row['Izena'].'</td> <td>'. $row['Abizena1'].'</td> <td>'.$row['Abizena2'].'</td><td>'.$row['Eposta'].'</td><td>'.$row['Telefonoa'].'</td><td>'.$row['Espezialitatea'].'</td><td>'.$row['Erremintak'].'</td><td>'.$row['Argazkia'].'</td></tr>';
+
 	}
 	echo '</table></div>';
 	
