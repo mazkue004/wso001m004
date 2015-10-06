@@ -54,7 +54,7 @@
 	<body>
 		<br/>
 		<div >
-		<form id="erregistro" name="erregistro" method="POST" action="Erregistratu.php" onsubmit="return ikusBalioak()">
+		<form id="erregistro" name="erregistro" method="POST" action="ErregistratuArgazkiakin.php" onsubmit="return ikusBalioak()" enctype="multipart/form-data">
 			Izen-abizenak(*): <input type="text" name="izena" id="izena" required placeholder="Izena" pattern="[A-Z][a-zA-Z]*" />
 			<input type="text" name="abizena1" id="abizena1" required placeholder="Abizena"  pattern="[A-Z][a-zA-Z]*"/>
 			<input type="text" name="abizena2" id="abizena2" required placeholder="Abizena" pattern="[A-Z][a-zA-Z]*" /><br/><br/>
@@ -71,8 +71,7 @@
 			</select><br/><br/>
 			<p id="besteEsp" name="besteEsp" ></p>
 			Interesa duzun teknologiak eta erremintak: <br/><textarea name="interesak" id="interesak" cols=40 rows=6></textarea><br/><br/>
-			Argazki bat igo nahi duzu? <input type='file' name="argazkia" id="argazkia" onchange="return argazkiaGehitu()"/><br/><br/>
-			<img src="" alt="" id="argazki" name="argazki"/>
+			Argazki bat igo nahi duzu? <input type='file' name="argazkia" id="argazkia"/><br/><br/>
 			<input type="submit" value="Submit"/>
 		</form>
 		<a  id="home" href='layout.html'>Home</a>
