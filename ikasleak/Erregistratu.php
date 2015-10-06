@@ -2,13 +2,17 @@
 	mysql_connect("localhost","root","") or die(mysql_error());
 	mysql_select_db("quiz") or die(mysql_error());
 	
-	
+	//Besterik eremua aukeratzen bada
+	$espezialitatea=$_POST['espezialitatea'];
+	if($espezialitatea == 'bestea'){
+		$espezialitatea = $_POST['besteEspezialitatea'];	
+	}
 	
 	$erabepost = mysql_query("select Eposta from erabiltzaile where Eposta='$_POST[eposta]'");
 	if(mysql_fetch_array($erabepost)){
 		echo 'Eposta existitzen da, aldatu.';
-	}else{
-		$sql="INSERT INTO erabiltzaile(Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Espezialitatea, Erremintak, Argazkia) VALUES ('$_POST[izena]','$_POST[abizena1]','$_POST[abizena2]','$_POST[eposta]','$_POST[pass]','$_POST[telefonoa]','$_POST[espezialitatea]','$_POST[interesak]','$_POST[argazkia]')";
+		}else{
+		$sql="INSERT INTO erabiltzaile(Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Espezialitatea, Erremintak, Argazkia) VALUES ('$_POST[izena]','$_POST[abizena1]','$_POST[abizena2]','$_POST[eposta]','$_POST[pass]','$_POST[telefonoa]','$espezialitatea','$_POST[interesak]','$_POST[argazkia]')";
 		if(!mysql_query($sql)){
 			die('Errorea:  '.mysql_error());
 		}
