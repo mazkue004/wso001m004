@@ -42,7 +42,7 @@
 			die('Errorea:  '.mysql_error());
 		}
 		echo 'Ondo gorde da<br/>';
-		echo '<a  id="ikusi" href="IkusiErabiltzaileak.php">Ikusi erabiltzaileak</a>';
+		echo '<a  id="ikusi" href="IkusiErabiltzaileakArgazkiekin.php">Ikusi erabiltzaileak</a>';
 		mysql_close();
 	}
 	
