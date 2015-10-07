@@ -12,18 +12,18 @@
 	$pic = ($_FILES['argazkia']['name']);*/
 	
 	//Argazkia
-	$fitxategiEdukia =null;
+	$argazkiEdukia =null;
 	if($_FILES['argazkia']['size'] > 0)
 	{
-		$fitxategi = $_FILES['argazkia']['name'];
-		$fitxategiarenIzena  = $_FILES['argazkia']['tmp_name'];
-		$fitxategiaIriki      = fopen($fitxategiarenIzena, 'r');
-		$fitxategiEdukia = fread($fitxategiaIriki, filesize($fitxategiarenIzena));
-		$fitxategiEdukia = addslashes($fitxategiEdukia);
-		fclose($fitxategiaIriki);
+		$argazki = $_FILES['argazkia']['name'];
+		$argazkiarenIzena  = $_FILES['argazkia']['tmp_name'];
+		$argazkiaIriki      = fopen($argazkiarenIzena, 'r');
+		$argazkiEdukia = fread($argazkiaIriki, filesize($argazkiarenIzena));
+		$argazkiEdukia = addslashes($argazkiEdukia);
+		fclose($argazkiaIriki);
 		if(!get_magic_quotes_gpc())
 		{
-			$fitxategi = addslashes($fitxategi);
+			$argazki = addslashes($argazki);
 		}
 	}
 	
@@ -37,7 +37,7 @@
 	if(mysql_fetch_array($erabepost)){
 		echo 'Eposta existitzen da, aldatu.';
 		}else{
-		$sql="INSERT INTO erabiltzaile(Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Espezialitatea, Erremintak, Argazkia) VALUES ('$_POST[izena]','$_POST[abizena1]','$_POST[abizena2]','$_POST[eposta]','$_POST[pass]','$_POST[telefonoa]','$espezialitatea','$_POST[interesak]','$fitxategiEdukia')";
+		$sql="INSERT INTO erabiltzaile(Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Espezialitatea, Erremintak, Argazkia) VALUES ('$_POST[izena]','$_POST[abizena1]','$_POST[abizena2]','$_POST[eposta]','$_POST[pass]','$_POST[telefonoa]','$espezialitatea','$_POST[interesak]','$argazkiEdukia')";
 		if(!mysql_query($sql)){
 			die('Errorea:  '.mysql_error());
 		}

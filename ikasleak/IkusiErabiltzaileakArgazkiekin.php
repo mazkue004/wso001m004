@@ -5,12 +5,15 @@
 	
 	
 	$erabiltzaile = mysql_query("select * from erabiltzaile");
-
+	
 	echo '<div class="container-fluid inner"><table class="tableizer-table">';
 	echo '<tr class="tableizer-firstrow"><th> IZENA </th><th> 1. ABIZENA </th><th> 2. ABIZENA </th><th> EPOSTA </th><th> TELEFONOA </th><th> ESPEZIALITATEA </th><th> ERREMINTAK </th><th> ARGAZKIA </th></tr>';
 	while( $row = mysql_fetch_array( $erabiltzaile) ) {
-		echo '<tr><td>'.$row['Izena'].'</td> <td>'. $row['Abizena1'].'</td> <td>'.$row['Abizena2'].'</td><td>'.$row['Eposta'].'</td><td>'.$row['Telefonoa'].'</td><td>'.$row['Espezialitatea'].'</td><td>'.$row['Erremintak'].'</td><td>'.$row['Argazkia'].'</td></tr>';
-
+		if($row['Argazkia'] == null){
+			echo '<tr><td>'.$row['Izena'].'</td> <td>'. $row['Abizena1'].'</td> <td>'.$row['Abizena2'].'</td><td>'.$row['Eposta'].'</td><td>'.$row['Telefonoa'].'</td><td>'.$row['Espezialitatea'].'</td><td>'.$row['Erremintak'].'</td><td>'.'<img width="120px" height="150px" src="argazkiak/defektuzkoa.jpg"/>'.'</td></tr>';
+		}else{		
+			echo '<tr><td>'.$row['Izena'].'</td> <td>'. $row['Abizena1'].'</td> <td>'.$row['Abizena2'].'</td><td>'.$row['Eposta'].'</td><td>'.$row['Telefonoa'].'</td><td>'.$row['Espezialitatea'].'</td><td>'.$row['Erremintak'].'</td><td>'.'<img width="120px" height="150px" src="data:image;base64,'.base64_encode($row['Argazkia']).'"/>'.'</td></tr>';
+		}
 	}
 	echo '</table></div>';
 	
