@@ -17,16 +17,14 @@
 					$em=1;
 					
 				}
+			}else{
+				$em=3;
 			}
 			mysql_close();
 		}else{
 			$em = 2;
 		}
 	} 
-	
-	
-	
-	
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +36,7 @@
 		content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
 		<link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Muli:300,400" rel="stylesheet" type="text/css">
+		<link rel='stylesheet' type='text/css' href='stylesPWS/credits.css' />
 		<style>
 			body {
 			font: 400 16px 'Muli', sans-serif !important;
@@ -57,19 +56,21 @@
 				Password(*): <input type="password" name="pass" id="pass" required /> <br/><br/>
 				<input type="submit" value="Log in"/>
 			</form>
-			<br/>
 			<?php 
 				if ($em == 0){
-					echo '<label id="loginOndo">Log in ondo egin da</label><br/>';
-					echo '<a  id="home" href="layout.html">Quiz</a>';
+					echo '<br/><label id="loginOndo">Log in ondo egin da</label><br/>';
+					echo '<a  id="home" href="layout.html">Quiz</a><br/>';
 					} else if($em == 1){
-					echo '<label id="loginGaizki">Pasahitza okerra</label>';
+					echo '<br/><label id="loginGaizki">Pasahitza okerra</label><br/>';
 				} 
 				if($em == 2){
-					echo '<label id="loginGaizki">Eposta formatua okerra</label>';
+					echo '<br/><label id="loginGaizki">Eposta formatua okerra</label><br/>';
+				}
+				if($em == 3){
+					echo '<br/><label id="loginGaizki">Emaila egokia da baina ez dago gordeta</label><br/>';
 				}
 			?>
-			<br/><br/>
+			<br/>
 			<a  id="home" href='layout.html'>Home</a>
 		</div>
 	</body>
