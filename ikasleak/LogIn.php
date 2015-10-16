@@ -12,16 +12,20 @@
 			if($erabiltzaile=mysql_fetch_array($erab)){
 				$pasahitza = $erabiltzaile['Pasahitza'];
 				if($_POST['pass'] == $pasahitza){
+					//Korreoa eta pasahitza egokiak
 					$em=0;
 					} else{
+					//Korreoa egokia eta pasahitza desegokia
 					$em=1;
 					
 				}
 			}else{
+				//Korreo formato egokia, baina erregistratu gabe
 				$em=3;
 			}
 			mysql_close();
 		}else{
+			//Korreo formato desegokia
 			$em = 2;
 		}
 	} 

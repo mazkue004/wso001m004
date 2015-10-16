@@ -75,8 +75,8 @@ function argazkiaErakutsi() {
 		<div class="container-fluid inner" >
 		<form id="erregistro" name="erregistro" method="POST" action="ErregistratuArgazkiakin.php" onsubmit="return ikusBalioak()" enctype="multipart/form-data">
 			Izen-abizenak(*): <input type="text" name="izena" id="izena" required placeholder="Izena" pattern="[A-Z]([a-zA-Z]|\s[a-zA-Z])*" />
-			<input type="text" name="abizena1" id="abizena1" required placeholder="Abizena"  pattern="([a-zA-Z]|\s[a-zA-Z])*"/>
-			<input type="text" name="abizena2" id="abizena2" required placeholder="Abizena" pattern="([a-zA-Z]|\s[a-zA-Z])*" /><br/><br/>
+			<input type="text" name="abizena1" id="abizena1" required placeholder="Abizena"  pattern="[a-zA-Z]([a-zA-Z]|\s[a-zA-Z])*"/>
+			<input type="text" name="abizena2" id="abizena2" required placeholder="Abizena" pattern="[a-zA-Z]([a-zA-Z]|\s[a-zA-Z])*" /><br/><br/>
 			Eposta elektronikoa(*): <input type="email" name="eposta" id="eposta" required pattern="[a-zA-Z]+[0-9]{3}\@ikasle\.ehu\.eu?s" placeholder="ehu001@ikasle.ehu.es"/> <br/><br/>
 			Password(*): <input type="password" name="pass" id="pass" required  pattern=".{6,}"/> <br/><br/>
 			Errepikatu password-a(*): <input type="password" name="pass1" id="pass1" required onchange="return pasahitzBerdina()"/> <br/><br/>
