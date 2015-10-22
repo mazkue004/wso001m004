@@ -58,7 +58,7 @@
 		<br/>
 		<div class="container-fluid inner" >
 			<form id="erregistro" name="erregistro" method="POST" action="LogIn.php">
-				Eposta elektronikoa(*): <input type="text" name="eposta" id="eposta" required placeholder="ehu001@ikasle.ehu.es"/> <br/><br/>
+				Eposta elektronikoa(*): <input type="text" name="eposta" id="eposta" value="<?php if(!empty($_POST['eposta'])) echo htmlentities($_POST['eposta']);?>" required placeholder="ehu001@ikasle.ehu.es"/> <br/><br/>
 				Password(*): <input type="password" name="pass" id="pass" required /> <br/><br/>
 				<input type="submit" value="Log in"/>
 			</form>
@@ -69,7 +69,7 @@
 					echo '<br/><label id="loginOndo">Log in ondo egin da</label><br/>';
 					
 					if($rola=='ikasle'){
-						header("Location: InsertQuestion.php");
+						header("Location: InsertQuestion.php?eposta=".$_POST['eposta']);
 						exit;
 					}else{
 						header("Location: layout.html");
