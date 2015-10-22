@@ -1,5 +1,8 @@
 ﻿<?php 
-echo 'aaa';
+	mysql_connect("localhost","root","") or die(mysql_error());
+	mysql_select_db("quiz") or die(mysql_error());
+	
+	$galdera=mysql_query("select * from galdera");
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +35,18 @@ echo 'aaa';
 			</nav>
 			<section class="main" id="s1">
 				<div>
-					Quizzes and credits will be displayed in this spot in future laboratories ...
+					<table>
+						<tr>
+							<td><strong>Galdera</strong></td><td><strong>Zailtasuna</strong></td>
+						</tr>	
+							
+					<?php
+						while ($row = mysql_fetch_array($galdera)){
+							echo '<tr><td>'.$row['Gtestua'].'</td> <td>'. $row['Zailtasuna'].'</td> </tr><br>';
+						}
+						mysql_close();
+					?>
+					</table>
 				</div>
 			</section>
 			<footer class='main' id='f1'>

@@ -1,4 +1,18 @@
-
+<?php
+	mysql_connect("localhost","root","") or die(mysql_error());
+	mysql_select_db("quiz") or die(mysql_error());
+	
+	if((isset($_POST['emaila']))&&(isset($_POST['galdera']))&&(isset($_POST['erantzuna']))&&(isset($_POST['zailtasuna']))){
+		$sql="INSERT INTO galdera(Eposta, Gtestua, Gerantzuna, Zailtasuna) VALUES ('$_POST[emaila]','$_POST[galdera]','$_POST[erantzuna]','$_POST[zailtasuna]')";
+		if(!mysql_query($sql)){
+			die('Errorea:  '.mysql_error());
+		}
+		echo 'Ondo gorde da<br/>';
+		header("Location: InsertQuestion.php?eposta=".$_POST['emaila']);
+		mysql_close();
+	}
+	
+	?>
 
 <!DOCTYPE html>
 <html>
@@ -22,12 +36,11 @@
 	<body>
 		<br/>
 		<div class="container-fluid inner" >
-		<form id="erregistro" name="erregistro" method="POST" action="ErregistratuArgazkiakin.php" onsubmit="return ikusBalioak()" enctype="multipart/form-data">
-			<input type="hidden" name="eposta" id="eposta" value="<?php echo $_GET['eposta'];?>"/>
+		<form id="erregistro" name="erregistro" method="POST" action="InsertQuestion.php" enctype="multipart/form-data">
+			<input type="hidden" name="emaila" id="emaila" value="<?php echo $_GET['eposta']?>"/>
 			Galdera(*): <input type="text" name="galdera" id="galdera" required placeholder="Galdera" /><br/><br/>
 			Erantzuna(*): <input type="text" name="erantzuna" id="erantzuna" required placeholder="erantzun laburra"  pattern="[a-zA-Z0-9]([a-zA-Z0-9]|\s[a-zA-Z0-9])*"/><br/><br/>
 			
-			<?php echo $_POST['eposta']?>
 			<label>Zailtasun maila(*):</label>
 			<input type="radio" name="zailtasuna" value="1" checked>1
 			<input type="radio" name="zailtasuna" value="2">2
