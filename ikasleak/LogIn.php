@@ -5,12 +5,14 @@
 	//Eposta eta pasahitza emaitza emateko
 	$em = -1;
 	
+	
 	//Eposta konprobatu
 	if(isset($_POST['eposta']) && isset($_POST['pass'])){
 		if(!filter_var($_POST['eposta'], FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z]+[0-9]{3}\@ikasle\.ehu\.eu?s/"))) === false){
-			$erab = mysql_query("select Eposta,Pasahitza from erabiltzaile where Eposta='$_POST[eposta]'");
+			$erab = mysql_query("select Eposta,Pasahitza,Rola from erabiltzaile where Eposta='$_POST[eposta]'");
 			if($erabiltzaile=mysql_fetch_array($erab)){
 				$pasahitza = $erabiltzaile['Pasahitza'];
+				$rola = $erabiltzaile['Rola'];
 				if($_POST['pass'] == $pasahitza){
 					//Korreoa eta pasahitza egokiak
 					$em=0;
@@ -62,8 +64,17 @@
 			</form>
 			<?php 
 				if ($em == 0){
+				
+					
 					echo '<br/><label id="loginOndo">Log in ondo egin da</label><br/>';
-					echo '<a  id="home" href="layout.html">Quiz</a><br/>';
+					
+					if($rola=='ikasle'){
+						header("Location: InsertQuestion.php");
+						exit;
+					}else{
+						header("Location: layout.html");
+						exit;
+					}
 					} else if($em == 1){
 					echo '<br/><label id="loginGaizki">Pasahitza okerra</label><br/>';
 				} 

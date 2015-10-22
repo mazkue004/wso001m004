@@ -81,6 +81,9 @@ function argazkiaErakutsi() {
 			Password(*): <input type="password" name="pass" id="pass" required  pattern=".{6,}"/> <br/><br/>
 			Errepikatu password-a(*): <input type="password" name="pass1" id="pass1" required onchange="return pasahitzBerdina()"/> <br/><br/>
 			Telefono zenbakia(*): <input type="tel" name="telefonoa" id="telefonoa" required pattern="(6|7|9)[0-9]{8}" placeholder="654123789"/> <br/><br/>
+			<label>Rola(*):</label><br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="rola" value="ikasle" checked><label for="ikasle">Ikasle</label><br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="rola" value="irakasle"><label for="irakasle">Irakasle</label><br/><br/>
 			Espezialitatea(*): 
 			<select name="espezialitatea" id="espezialitatea" required onchange="besteEspezialitatea()">
 				<option value="Hardware">Hardware</option>

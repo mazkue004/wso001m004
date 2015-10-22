@@ -35,7 +35,7 @@
 		}
 	}
 	
-	if((isset($_POST['izena'])) &&(isset($_POST['abizena1'])) && (isset($_POST['abizena2'])) && (isset($_POST['eposta'])) &&(isset($_POST['pass'])) && (isset($_POST['pass1'])) && (isset($_POST['telefonoa']))){
+	if((isset($_POST['izena'])) &&(isset($_POST['abizena1'])) && (isset($_POST['abizena2'])) && (isset($_POST['eposta'])) &&(isset($_POST['pass'])) && (isset($_POST['pass1'])) && (isset($_POST['telefonoa']))&& (isset($_POST['rola']))){
 		if((!filter_var($_POST['izena'], FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[A-Z]([a-zA-Z]|\s[a-zA-Z])*/"))) === false) &&
 		(!filter_var($_POST['abizena1'], FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z]([a-zA-Z]|\s[a-zA-Z])*/"))) === false) &&
 		(!filter_var($_POST['abizena2'], FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z]([a-zA-Z]|\s[a-zA-Z])*/"))) === false) &&
@@ -43,12 +43,17 @@
 		(!filter_var($_POST['pass'], FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/.{6,}/"))) === false) &&
 		($_POST['pass'] == $_POST['pass1']) &&
 		(!filter_var($_POST['telefonoa'], FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/(6|7|9)[0-9]{8}/"))) === false)){
-			
+			if($_POST['rola']=='irakasle'){
+				$rola='irakasle';
+			}else{
+				$rola='ikasle';
+			}
+						
 			$erabepost = mysql_query("select Eposta from erabiltzaile where Eposta='$_POST[eposta]'");
 			if(mysql_fetch_array($erabepost)){
 				echo 'Eposta existitzen da, aldatu.';
 				}else{
-				$sql="INSERT INTO erabiltzaile(Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Espezialitatea, Erremintak, Argazkia) VALUES ('$_POST[izena]','$_POST[abizena1]','$_POST[abizena2]','$_POST[eposta]','$_POST[pass]','$_POST[telefonoa]','$espezialitatea','$_POST[interesak]','$argazkiEdukia')";
+				$sql="INSERT INTO erabiltzaile(Izena, Abizena1, Abizena2, Eposta, Pasahitza, Telefonoa, Rola, Espezialitatea, Erremintak, Argazkia) VALUES ('$_POST[izena]','$_POST[abizena1]','$_POST[abizena2]','$_POST[eposta]','$_POST[pass]','$_POST[telefonoa]','$rola','$espezialitatea','$_POST[interesak]','$argazkiEdukia')";
 				if(!mysql_query($sql)){
 					die('Errorea:  '.mysql_error());
 				}
