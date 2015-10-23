@@ -2,20 +2,29 @@
 	mysql_connect("localhost","root","") or die(mysql_error());
 	mysql_select_db("quiz") or die(mysql_error());
 	
-	if((isset($_POST['emaila']))&&(isset($_POST['galdera']))&&(isset($_POST['erantzuna']))&&(isset($_POST['zailtasuna']))){
+	if((isset($_POST['kon']))&&(isset($_POST['emaila']))&&(isset($_POST['galdera']))&&(isset($_POST['erantzuna']))&&(isset($_POST['zailtasuna']))){
 		$sql="INSERT INTO galdera(Eposta, Gtestua, Gerantzuna, Zailtasuna) VALUES ('$_POST[emaila]','$_POST[galdera]','$_POST[erantzuna]','$_POST[zailtasuna]')";
 		if(!mysql_query($sql)){
 			die('Errorea:  '.mysql_error());
 		}
+		$id = mysql_query("select Kid from konexioak where Eposta='$_POST[emaila]' AND Kordua='$_POST[kon]'");
+		if($gordekod=mysql_fetch_array($id)){
+			ini_set('date.timezone', 'Europe/Berlin');
+			$time1 = date('H:i:s',time());
+			$ekin="INSERT INTO ekintzak(Kid, Eposta, Emota, Eordua, Kip)VALUES('$gordekod[Kid]','$_POST[emaila]', 'galdera txertatu', '$time1', '$_SERVER[HTTP_CLIENT_IP]')";
+			if(!mysql_query($ekin)){
+				die('Errorea:  '.mysql_error());
+			}
+			echo 'Ondo gorde da<br/>';
+			mysql_close();
+			header("Location: InsertQuestion.php?eposta=".$_POST['emaila']."&konexioa=".$_POST['kon']);
+			exit;
+			mysql_close();
+		}
 		
-		$ekin="INSERT INTO ekintzak(Kid, Eposta, Emota, Eordua, Kip)VALUES('$_GET[konexioa]','$_POST[emaila]', 'galdera txertatu', 'time()' )";
-		echo 'Ondo gorde da<br/>';
-		//header("Location: InsertQuestion.php?eposta=".$_POST['emaila']."konexioa=".$_GET['konexioa']);
-		exit;
-		mysql_close();
 	}
 	
-	?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +34,7 @@
 		<link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Muli:300,400" rel="stylesheet" type="text/css">
 		<link rel='stylesheet' type='text/css' href='stylesPWS/credits.css' />
-
+		
 		<style>
 			body {
 			font: 400 16px 'Muli', sans-serif !important;
@@ -39,21 +48,22 @@
 	<body>
 		<br/>
 		<div class="container-fluid inner" >
-		<form id="erregistro" name="erregistro" method="POST" action="InsertQuestion.php" enctype="multipart/form-data">
-			<input type="hidden" name="emaila" id="emaila" value="<?php echo $_GET['eposta']?>"/>
-			Galdera(*): <input type="text" name="galdera" id="galdera" required placeholder="Galdera" /><br/><br/>
-			Erantzuna(*): <input type="text" name="erantzuna" id="erantzuna" required placeholder="erantzun laburra"  pattern="[a-zA-Z0-9]([a-zA-Z0-9]|\s[a-zA-Z0-9])*"/><br/><br/>
-			
-			<label>Zailtasun maila(*):</label>
-			<input type="radio" name="zailtasuna" value="1" checked>1
-			<input type="radio" name="zailtasuna" value="2">2
-			<input type="radio" name="zailtasuna" value="3">3
-			<input type="radio" name="zailtasuna" value="4">4
-			<input type="radio" name="zailtasuna" value="5">5<br/><br/>
-			<input type="submit" value="Sortu galdera"/>
-		</form>
-		<br/>
-		<a  id="home" href='layout.html'>Home</a>
+			<form id="erregistro" name="erregistro" method="POST" action="InsertQuestion.php" enctype="multipart/form-data">
+				<input type="hidden" name="emaila" id="emaila" value="<?php echo $_GET['eposta']?>"/>
+				<input type="hidden" name="kon" id="kon" value="<?php echo $_GET['konexioa']?>"/>
+				Galdera(*): <input type="text" name="galdera" id="galdera" required placeholder="Galdera" /><br/><br/>
+				Erantzuna(*): <input type="text" name="erantzuna" id="erantzuna" required placeholder="erantzun laburra"  pattern="[a-zA-Z0-9]([a-zA-Z0-9]|\s[a-zA-Z0-9])*"/><br/><br/>
+				
+				<label>Zailtasun maila(*):</label>
+				<input type="radio" name="zailtasuna" value="1" checked>1
+				<input type="radio" name="zailtasuna" value="2">2
+				<input type="radio" name="zailtasuna" value="3">3
+				<input type="radio" name="zailtasuna" value="4">4
+				<input type="radio" name="zailtasuna" value="5">5<br/><br/>
+				<input type="submit" value="Sortu galdera"/>
+			</form>
+			<br/>
+			<a  id="home" href='layout.html'>Home</a>
 		</div>
 	</body>
-	</html>
+</html>
