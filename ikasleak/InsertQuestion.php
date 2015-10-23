@@ -7,8 +7,11 @@
 		if(!mysql_query($sql)){
 			die('Errorea:  '.mysql_error());
 		}
+		
+		$ekin="INSERT INTO ekintzak(Kid, Eposta, Emota, Eordua, Kip)VALUES('$_GET[konexioa]','$_POST[emaila]', 'galdera txertatu', 'time()' )";
 		echo 'Ondo gorde da<br/>';
-		header("Location: InsertQuestion.php?eposta=".$_POST['emaila']);
+		//header("Location: InsertQuestion.php?eposta=".$_POST['emaila']."konexioa=".$_GET['konexioa']);
+		exit;
 		mysql_close();
 	}
 	

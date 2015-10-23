@@ -42,7 +42,7 @@
 							
 					<?php
 						while ($row = mysql_fetch_array($galdera)){
-							echo '<tr><td>'.$row['Gtestua'].'</td> <td>'. $row['Zailtasuna'].'</td> </tr><br>';
+							echo '<tr><td>'.$row['Gtestua'].'</td> <td>'. $row['Zailtasuna'].'</td> </tr>';
 						}
 						mysql_close();
 					?>

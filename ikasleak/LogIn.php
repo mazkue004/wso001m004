@@ -25,7 +25,7 @@
 				//Korreo formato egokia, baina erregistratu gabe
 				$em=3;
 			}
-			mysql_close();
+			//mysql_close();
 		}else{
 			//Korreo formato desegokia
 			$em = 2;
@@ -69,7 +69,15 @@
 					echo '<br/><label id="loginOndo">Log in ondo egin da</label><br/>';
 					
 					if($rola=='ikasle'){
-						header("Location: InsertQuestion.php?eposta=".$_POST['eposta']);
+						ini_set('date.timezone', 'Europe/Berlin');
+						$time1 = date('H:i:s',time());
+						$konex ="INSERT INTO konexioak(Eposta, Kordua) VALUES ('$_POST[eposta]','$time1')";
+						if(!mysql_query($konex)){
+							die('Errorea:  '.mysql_error());
+						}
+						echo 'Ondo gorde da<br/>';
+						mysql_close();
+						header("Location: InsertQuestion.php?eposta=".$_POST['eposta']."&konexioa=".$time1);
 						exit;
 					}else{
 						header("Location: layout.html");
