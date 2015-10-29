@@ -38,5 +38,6 @@
 		</style>
 	</head>
 	<body>
+	<a href="layout.php">Hasiera</a>
 	</body>
 </html>

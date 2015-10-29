@@ -3,6 +3,8 @@
 	mysql_select_db("quiz") or die(mysql_error());
 	
 	$galdera=mysql_query("select * from galdera");
+	
+	
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,6 +20,18 @@
 		type='text/css' 
 		media='only screen and (max-width: 480px)'
 		href='stylesPWS/smartphone.css' />
+		<style>
+			body {
+			font: 400 16px 'Muli', sans-serif !important;
+			margin: 0;
+			padding: 0;
+			}
+		</style>
+		<script>
+		function gald(){
+			document.getElementById("s1").innerHTML='<div><table><tr><td><strong> Galdera </strong></td><td><strong> Zailtasuna </strong></td></tr><?php while ($row = mysql_fetch_array($galdera)){echo '<tr><td>'.$row['Gtestua'].'</td> <td>'. $row['Zailtasuna'].'</td> </tr>';} mysql_close();?></table></div>';
+		}
+		</script>
 	</head>
 	<body>
 		<div id='page-wrap'>
@@ -29,25 +43,25 @@
 				<h2>Quiz: crazy questions</h2>
 			</header>
 			<nav class='main' id='n1' role='navigation'>
-				<span><a href='layout.html'>Home</a></span>
-				<span><a href='/quizzes'>Quizzes</a></span>
+				<span><a href='layout.php'>Hasiera</a></span>
+				<span><a href="javascript:gald();">Quizzes</a></span>
 				<span><a href='credits.html'>Credits</a></span>
 			</nav>
 			<section class="main" id="s1">
-				<div>
+				<!--<div>
 					<table>
 						<tr>
 							<td><strong>Galdera</strong></td><td><strong>Zailtasuna</strong></td>
 						</tr>	
 							
 					<?php
-						while ($row = mysql_fetch_array($galdera)){
-							echo '<tr><td>'.$row['Gtestua'].'</td> <td>'. $row['Zailtasuna'].'</td> </tr>';
-						}
-						mysql_close();
+						//while ($row = mysql_fetch_array($galdera)){
+							//echo '<tr><td>'.$row['Gtestua'].'</td> <td>'. $row['Zailtasuna'].'</td> </tr>';
+						//}
+						//mysql_close();
 					?>
 					</table>
-				</div>
+				</div>-->
 			</section>
 			<footer class='main' id='f1'>
 				<p><a href="http://en.wikipedia.org/wiki/Quiz" target="_blank">What is a Quiz?</a></p>

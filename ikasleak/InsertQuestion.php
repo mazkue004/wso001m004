@@ -31,8 +31,8 @@
 			}
 			mysql_close();
 			echo '<script> alert("Ondo gorde da");</script>';
-
-			header("Refresh:10;Location: InsertQuestion.php?eposta=".$_POST['emaila']."&konexioa=".$_POST['kon']);
+			
+			header("Location: InsertQuestion.php?eposta=".$_POST['emaila']."&konexioa=".$_POST['kon']);
 			exit;
 		}
 		
@@ -74,10 +74,10 @@
 				<input type="radio" name="zailtasuna" value="3">3
 				<input type="radio" name="zailtasuna" value="4">4
 				<input type="radio" name="zailtasuna" value="5">5<br/><br/>
-				<input type="submit" value="Sortu galdera"/>
+				<input type="submit" value="Sortu galdera" onclick="javascript:alert('ondo gorde da');"/>
 			</form>
 			<br/>
-			<a  id="home" href='layout.html'>Home</a>
+			<a  id="home" href='layout.php'>Hasiera</a>
 		</div>
 	</body>
 </html>

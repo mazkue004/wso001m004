@@ -94,7 +94,7 @@
 				}
 			?>
 			<br/>
-			<a  id="home" href='layout.html'>Home</a>
+			<a  id="home" href='layout.php'>Hasiera</a>
 		</div>
 	</body>
 </html>
