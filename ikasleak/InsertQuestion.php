@@ -5,18 +5,7 @@
 	$xml = simplexml_load_file('galderak.xml');
 	
 	if((isset($_POST['kon']))&&(isset($_POST['emaila']))&&(isset($_POST['galdera']))&&(isset($_POST['erantzuna']))&&(isset($_POST['zailtasuna']))){
-		
-		$assessmentItem = $xml->addChild('assessmentItem');
-		$assessmentItem->addAttribute('konplexutasuna', $_POST['zailtasuna']);
-		$assessmentItem->addAttribute('subject', 'gaia');
-		$itemBody=$assessmentItem->addChild('itemBody');
-		$itemBody->addChild('p', $_POST['galdera']);
-		$correctResponse=$assessmentItem->addChild('correctResponse');
-		$correctResponse->addChild('value',$_POST['erantzuna']);
-		
-		$xml->asXML('galderak.xml');
-		
-		
+		//Datu-basean gorde galderak
 		$sql="INSERT INTO galdera(Eposta, Gtestua, Gerantzuna, Zailtasuna) VALUES ('$_POST[emaila]','$_POST[galdera]','$_POST[erantzuna]','$_POST[zailtasuna]')";
 		if(!mysql_query($sql)){
 			die('Errorea:  '.mysql_error());
@@ -30,10 +19,20 @@
 				die('Errorea:  '.mysql_error());
 			}
 			mysql_close();
-			echo '<script> alert("Ondo gorde da");</script>';
-
-			header("Refresh:10;Location: InsertQuestion.php?eposta=".$_POST['emaila']."&konexioa=".$_POST['kon']);
-			exit;
+			
+			//XML fitxategian gorde galderak
+			$assessmentItem = $xml->addChild('assessmentItem');
+			$assessmentItem->addAttribute('konplexutasuna', $_POST['zailtasuna']);
+			$assessmentItem->addAttribute('subject', 'gaia');
+			$itemBody=$assessmentItem->addChild('itemBody');
+			$itemBody->addChild('p', $_POST['galdera']);
+			$correctResponse=$assessmentItem->addChild('correctResponse');
+			$correctResponse->addChild('value',$_POST['erantzuna']);
+			$xml->asXML('galderak.xml');
+			
+			echo "<script type='text/javascript'>alert(\"Ondo gorde da\")</script>";
+			header("Location: InsertQuestion.php?eposta=".$_POST['emaila']."&konexioa=".$_POST['kon']);
+			exit;		
 		}
 		
 	}
@@ -77,6 +76,7 @@
 				<input type="submit" value="Sortu galdera"/>
 			</form>
 			<br/>
+			<a  id="seeXMLQuestions" href='seeXMLQuestions.php'>XML galderak ikusi</a><br/>
 			<a  id="home" href='layout.html'>Home</a>
 		</div>
 	</body>
