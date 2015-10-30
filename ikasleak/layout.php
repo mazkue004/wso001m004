@@ -53,6 +53,7 @@
 				<span><a href='layout.php'>Hasiera</a></span>
 				<span><a href="javascript:gald();">Quizzes</a></span>
 				<span><a href='credits.html'>Credits</a></span>
+				<span><a href='seeQuestions.php'>See questions XSL</a></span>
 			</nav>
 			<section class="main" id="s1">
 				<!--<div>
