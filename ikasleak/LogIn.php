@@ -82,7 +82,7 @@
 						header("Location: InsertQuestion.php?eposta=".$_POST['eposta']."&konexioa=".$time1);
 						exit;
 					}else{
-						header("Location: layout.html");
+						header("Location: getUserInform.html");
 						exit;
 					}
 					} else if($em == 1){

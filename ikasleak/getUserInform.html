@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+		<meta name="generator"
+		content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+		<link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Muli:300,400" rel="stylesheet" type="text/css">
+		<link rel='stylesheet' type='text/css' href='stylesPWS/credits.css' />
+
+		<style>
+			body {
+			font: 400 16px 'Muli', sans-serif !important;
+			margin: 0;
+			padding: 0;
+			}
+		</style>
+		<title>Sign up</title>
+<body>
+<script type="text/javascript">
+function osatu(){
+var dago=false;
+var xmlDoc = document.getElementById('datuak').contentDocument;
+var korreoa = document.getElementById("email").value;
+var epostenZer=xmlDoc.getElementsByTagName("korreoa");
+var tfnoZer=xmlDoc.getElementsByTagName("tfonoa");
+for (var i = 0; i < epostenZer.length; i++) {
+if (korreoa==epostenZer[i].childNodes[0].nodeValue){
+document.getElementById('tfonoa').value=tfnoZer[i].childNodes[0].nodeValue;
+dago=true;
+break;}
+}
+if (!dago)
+{alert ('Eposta hau ez dago UPV/EHUn erregistraturik. Sar ezazu beste bat');}
+}
+</script>
+<div align="center">
+<h1>Aurkitu telefonoa ...</h1>
+<OBJECT id="datuak" data="erabiltzaileak.xml" type="text/xml" style="display:none"> </OBJECT>
+<FORM >
+Eposta <BR>
+<INPUT TYPE="TEXT" NAME="korreoa" id="korreoa" required><BR>
+Telefonoa <BR>
+<INPUT TYPE="TEXT" NAME="tfonoa" id="tfonoa" maxlength="9" pattern="[0-9]{9}" />
+<br><br>
+<INPUT TYPE="button" value="aurkitu" onClick="javascript:osatu()">
+</FORM>
+</div>
+</BODY>
+</HTML>
