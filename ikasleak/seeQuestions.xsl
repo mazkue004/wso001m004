@@ -14,21 +14,21 @@
 					<xsl:for-each select="/assessmentItems/assessmentItem">
 						<TR>
 							<TD>
-								<xsl:value-of select="itembody/p">
-									<BR/>
-								</TD>
-								<TD>
-									<xsl:value-of select="@konplexutasuna">
-										<BR/>
-									</TD>
-									<TD>
-										<xsl:value-of select="@subject">
-											<BR/>
-										</TD>
-									</TR>
-								</xsl:for-each>
-							</TABLE>
-						</BODY>
-					</HTML>
-				</xsl:template>
-			</xsl:stylesheet>
+								<xsl:value-of select="itemBody/p"/>
+								<BR/>
+							</TD>
+							<TD>
+								<xsl:value-of select="@konplexutasuna"/>
+								<BR/>
+							</TD>
+							<TD>
+								<xsl:value-of select="@subject"/>
+								<BR/>
+							</TD>
+						</TR>
+					</xsl:for-each>
+				</TABLE>
+			</BODY>
+		</HTML>
+	</xsl:template>
+</xsl:stylesheet>
