@@ -79,7 +79,8 @@
 						}
 						echo 'Ondo gorde da<br/>';
 						mysql_close();
-						header("Location: InsertQuestion.php?eposta=".$_POST['eposta']."&konexioa=".$time1);
+						//header("Location: InsertQuestion.php?eposta=".$_POST['eposta']."&konexioa=".$time1);
+						header("Location: handlingQuizzes.php?eposta=".$_POST['eposta']."&konexioa=".$time1);
 						exit;
 					}else{
 						header("Location: getUserInform.html");

@@ -31,7 +31,7 @@
 			$correctResponse=$assessmentItem->addChild('correctResponse');
 			$correctResponse->addChild('value',$_POST['erantzuna']);
 			$xml->asXML('galderak.xml');
-				
+			
 			echo '<script> alert("Ondo gorde da");</script>';
 			
 			header("Location: InsertQuestion.php?eposta=".$_POST['emaila']."&konexioa=".$_POST['kon']);
@@ -40,7 +40,7 @@
 		
 	}
 	
-
+	
 	
 	
 	
@@ -67,10 +67,8 @@
 		</style>
 		<title>Insert question</title>
 		<script type="text/javascript" language="javascript">
-			var mail = document.getElementById("emaila");
 			
-			alert(mail);
-				
+			XMLHttpRequestObject = new XMLHttpRequest();
 			XMLHttpRequestObject.onreadystatechange = function(){
 				alert(XMLHttpRequestObject.readyState);
 				if((XMLHttpRequestObject.readyState==4)&&(XMLHttpRequestObject.status==200)){
@@ -84,11 +82,12 @@
 			}
 			
 			function galderakIkusi(){
-				XMLHttpRequestObject.open("GET", "galderakIkusi.php?eposta=", true);
+				var email= document.getElementById("emaila");
+				XMLHttpRequestObject.open("GET", "galderakIkusi.php?eposta="+email.value, true);
 				XMLHttpRequestObject.send();
 			}
 			
-				
+			
 			
 		</script>
 	</head>
@@ -123,4 +122,4 @@
 		</div>
 		
 		
-</html>
+	</html>
