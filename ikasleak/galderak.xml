@@ -33,44 +33,4 @@
 			<value>erantzuna 2</value>
 		</correctResponse>
 	</assessmentItem>
-	<assessmentItem konplexutasuna="3" subject="gaia">
-		<itemBody>
-			<p>galdera 3</p>
-		</itemBody>
-		<correctResponse>
-			<value>erantzuna 3</value>
-		</correctResponse>
-	</assessmentItem>
-	<assessmentItem konplexutasuna="2" subject="gaia">
-		<itemBody>
-			<p>galdera 4</p>
-		</itemBody>
-		<correctResponse>
-			<value>erantzuna 4</value>
-		</correctResponse>
-	</assessmentItem>
-	<assessmentItem konplexutasuna="2" subject="gaia">
-		<itemBody>
-			<p>galdera 10</p>
-		</itemBody>
-		<correctResponse>
-			<value>erantzuna 10</value>
-		</correctResponse>
-	</assessmentItem>
-	<assessmentItem konplexutasuna="3" subject="gaia">
-		<itemBody>
-			<p>Galdera1</p>
-		</itemBody>
-		<correctResponse>
-			<value>Erantzuna1</value>
-		</correctResponse>
-	</assessmentItem>
-	<assessmentItem konplexutasuna="3" subject="gaia">
-		<itemBody>
-			<p>Galdera galdera</p>
-		</itemBody>
-		<correctResponse>
-			<value>Erantzuna erantzuna</value>
-		</correctResponse>
-	</assessmentItem>
 </assessmentItems>

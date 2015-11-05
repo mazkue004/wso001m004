@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -22,7 +19,7 @@
 			
 			XMLHttpRequestObject = new XMLHttpRequest();
 			XMLHttpRequestObject.onreadystatechange = function(){
-				alert(XMLHttpRequestObject.readyState);
+				//alert(XMLHttpRequestObject.readyState);
 				if((XMLHttpRequestObject.readyState==4)&&(XMLHttpRequestObject.status==200)){
 					document.getElementById("galderak").innerHTML=XMLHttpRequestObject.responseText;
 				}
@@ -32,15 +29,28 @@
 			function sortuGaldera(){
 				var email= document.getElementById("emaila");
 				var konexi=document.getElementById("kon");
-				XMLHttpRequestObject.open("GET", "galderaGehitu.php?eposta="+email.value+"&konexioa="+konexi.value, true);
+				var gald=document.getElementById("galdera");
+				var eran=document.getElementById("erantzuna");
+				var balioa;
+				if (document.getElementById('r1').checked) {
+					balioa = document.getElementById('r1').value;
+					}else if (document.getElementById('r2').checked) {
+					balioa = document.getElementById('r2').value;
+					}else if (document.getElementById('r3').checked) {
+					balioa = document.getElementById('r3').value;
+					}else  if(document.getElementById('r4').checked){
+					balioa = document.getElementById('r4').value;
+					}else{
+					balioa = document.getElementById('r5').value;
+					}
+				XMLHttpRequestObject.open("GET", "galderaGehitu.php?eposta="+email.value+"&konexioa="+konexi.value+"&galdera="+gald.value+"&erantzuna="+eran.value+"&balioa="+balioa, true);
 				XMLHttpRequestObject.send(null);
 				//XMLHttpRequestObject.getAllResponseHeaders();
-
+				
 			}
 			
 			function galderakIkusi(){
 				var email= document.getElementById("emaila");
-				alert(emaila);
 				XMLHttpRequestObject.open("GET", "galderakIkusi.php?eposta="+email.value, true);
 				XMLHttpRequestObject.send();
 			}
@@ -62,11 +72,12 @@
 				Erantzuna(*): <input type="text" name="erantzuna" id="erantzuna" required placeholder="erantzun laburra"  pattern="[a-zA-Z0-9]([a-zA-Z0-9]|\s[a-zA-Z0-9])*"/><br/><br/>
 				
 				<label>Zailtasun maila(*):</label>
-				<input type="radio" name="zailtasuna" value="1" checked>1
-				<input type="radio" name="zailtasuna" value="2">2
-				<input type="radio" name="zailtasuna" value="3">3
-				<input type="radio" name="zailtasuna" value="4">4
-				<input type="radio" name="zailtasuna" value="5">5<br/><br/>
+				<input type="radio" name="zailtasuna" id="r1" value="1" checked>1
+				<input type="radio" name="zailtasuna" id="r2" value="2">2
+				<input type="radio" name="zailtasuna" id="r3" value="3">3
+				<input type="radio" name="zailtasuna" id="r4" value="4">4
+				<input type="radio" name="zailtasuna" id="r5" value="5">5
+				<br/><br/>
 				<input type="button" value="Sortu galdera" onclick="sortuGaldera()"/>
 				<input type="button" value="Galderak ikusi" onclick="galderakIkusi()"/>
 			</form>

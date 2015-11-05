@@ -6,44 +6,42 @@
 	
 	$xml = simplexml_load_file('galderak.xml');
 	
-	if((isset($_POST['kon']))&&(isset($_POST['emaila']))&&(isset($_POST['galdera']))&&(isset($_POST['erantzuna']))&&(isset($_POST['zailtasuna']))){
-		
-		
-		$sql="INSERT INTO galdera(Eposta, Gtestua, Gerantzuna, Zailtasuna) VALUES ('$_POST[emaila]','$_POST[galdera]','$_POST[erantzuna]','$_POST[zailtasuna]')";
+	$email=$_GET['eposta'];
+	$konexioa=$_GET['konexioa'];
+	$galdera=$_GET['galdera'];
+	$erantzuna=$_GET['erantzuna'];
+	$balioa=$_GET['balioa'];
+	
+	if((isset($konexioa))&&(isset($email))&&(isset($galdera))&&(isset($erantzuna))&&(isset($balioa))){
+		$sql="INSERT INTO galdera(Eposta, Gtestua, Gerantzuna, Zailtasuna) VALUES ('$email','$galdera','$erantzuna','$balioa')";
 		if(!mysql_query($sql)){
 			die('Errorea:  '.mysql_error());
 		}
-		$id = mysql_query("select Kid from konexioak where Eposta='$_POST[emaila]' AND Kordua='$_POST[kon]'");
+		$id = mysql_query("select Kid from konexioak where Eposta='$email' AND Kordua='$konexioa'");
 		if($gordekod=mysql_fetch_array($id)){
 			ini_set('date.timezone', 'Europe/Berlin');
 			$time1 = date('H:i:s',time());
-			$ekin="INSERT INTO ekintzak(Kid, Eposta, Emota, Eordua, Kip)VALUES('$gordekod[Kid]','$_POST[emaila]', 'galdera txertatu', '$time1', '')";
+			$ekin="INSERT INTO ekintzak(Kid, Eposta, Emota, Eordua, Kip)VALUES('$gordekod[Kid]','$email', 'galdera txertatu', '$time1', '')";
 			if(!mysql_query($ekin)){
 				die('Errorea:  '.mysql_error());
 			}
+			echo 'Datu basean galdera ondo gorde da.<br/>';
 			mysql_close();
 			
 			$assessmentItem = $xml->addChild('assessmentItem');
-			$assessmentItem->addAttribute('konplexutasuna', $_POST['zailtasuna']);
+			$assessmentItem->addAttribute('konplexutasuna', $balioa);
 			$assessmentItem->addAttribute('subject', 'gaia');
 			$itemBody=$assessmentItem->addChild('itemBody');
-			$itemBody->addChild('p', $_POST['galdera']);
+			$itemBody->addChild('p', $galdera);
 			$correctResponse=$assessmentItem->addChild('correctResponse');
-			$correctResponse->addChild('value',$_POST['erantzuna']);
+			$correctResponse->addChild('value',$erantzuna);
 			$xml->asXML('galderak.xml');
+			echo 'XML fitxategian galdera ondo gorde da.<br/>';
 			
-			echo '<script> alert("Ondo gorde da");</script>';
-			
-			header("Location: InsertQuestion.php?eposta=".$_POST['emaila']."&konexioa=".$_POST['kon']);
-			exit;
+			//echo '<script> alert("Ondo gorde da");</script>';
+			//header("Location: InsertQuestion.php?eposta=".$_POST['emaila']."&konexioa=".$_POST['kon']);
+			//exit;
 		}
 		
 	}
-	
-	
-	
-	
-	
-	
-	
 ?>
