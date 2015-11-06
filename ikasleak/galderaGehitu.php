@@ -12,7 +12,8 @@
 	$erantzuna=$_GET['erantzuna'];
 	$balioa=$_GET['balioa'];
 	
-	if((isset($konexioa))&&(isset($email))&&(isset($galdera))&&(isset($erantzuna))&&(isset($balioa))){
+	//if((isset($konexioa))&&(isset($email))&&(isset($galdera))&&(isset($erantzuna))&&(isset($balioa))){
+		if(($konexioa!=null)&&($email!=null)&&($galdera!=null)&&($erantzuna!=null)&&($balioa!=null)){
 		$sql="INSERT INTO galdera(Eposta, Gtestua, Gerantzuna, Zailtasuna) VALUES ('$email','$galdera','$erantzuna','$balioa')";
 		if(!mysql_query($sql)){
 			die('Errorea:  '.mysql_error());
@@ -43,5 +44,7 @@
 			//exit;
 		}
 		
+	}else{
+		echo "Ez dituzu eremu guztiak bete.";
 	}
 ?>
