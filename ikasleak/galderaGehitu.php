@@ -25,7 +25,7 @@
 			if(!mysql_query($ekin)){
 				die('Errorea:  '.mysql_error());
 			}
-			echo 'Datu basean galdera ondo gorde da.<br/>';
+			echo 'Datu basean <b>'.$galdera.'</b> ondo gorde da.<br/>';
 			mysql_close();
 			
 			$assessmentItem = $xml->addChild('assessmentItem');
@@ -36,7 +36,7 @@
 			$correctResponse=$assessmentItem->addChild('correctResponse');
 			$correctResponse->addChild('value',$erantzuna);
 			$xml->asXML('galderak.xml');
-			echo 'XML fitxategian galdera ondo gorde da.<br/>';
+			echo 'XML fitxategian <b>'.$galdera.'</b> gorde da.<br/>';
 			
 			//echo '<script> alert("Ondo gorde da");</script>';
 			//header("Location: InsertQuestion.php?eposta=".$_POST['emaila']."&konexioa=".$_POST['kon']);
