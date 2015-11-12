@@ -4,8 +4,8 @@
 	//new nusoap_client
 	//
 	//new soap_server
-	$soapclient = new nusoap_client('egiaztatuPasahitza.php', true);
-	$result = $soapclient->call('pass', array('x'=>'$_GET[pass]'));
+	$soapclient = new nusoap_client('egiaztatuPasahitza.php?wsdl', true);
+	$result = $soapclient->call('pasahitza', array('x'=>'$_GET[pass]'));
 	
 	
 	echo $result."kaixo";
