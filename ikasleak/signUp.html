@@ -16,16 +16,7 @@
 		</style>
 		<title>Sign up</title>
 		<script type="text/javascript" language="javascript">
-		alert("alerta1");
-		XMLHttpRequestObject = new XMLHttpRequest();
-		alert("alerta2");
-		XMLHttpRequestObject.onreadystatechange = function(){
-		alert("alerta3");
-		alert(XMLHttpRequestObject.readyState);
-		if((XMLHttpRequestObject.readyState==4)&&(XMLHttpRequestObject.status==200)){
-			document.getElementById("emaitzaEposta").innerHTML=XMLHttpRequestObject.responseText;
-		}
-			}
+		
 		
 			function ikusBalioak(){ 
 				var pass = document.getElementById("pass");
@@ -79,6 +70,14 @@ function argazkiaErakutsi() {
 }
 			
 			function egiaztatuPosta(){
+			XMLHttpRequestObject = new XMLHttpRequest();
+		XMLHttpRequestObject.onreadystatechange = function(){
+		//alert(XMLHttpRequestObject.readyState);
+		if((XMLHttpRequestObject.readyState==4)&&(XMLHttpRequestObject.status==200)){
+			document.getElementById("emaitzaEposta").innerHTML=XMLHttpRequestObject.responseText;
+		}
+			}
+			
 			
 				var email= document.getElementById("eposta");
 				XMLHttpRequestObject.open("GET", "soapBezEgiaztatuMatrikulaAJAX.php?email="+email.value, true);
@@ -88,9 +87,16 @@ function argazkiaErakutsi() {
 			}
 			
 			function egiaztatuPasahitza(){
-			
+			XMLHttpRequestObject = new XMLHttpRequest();
+		XMLHttpRequestObject.onreadystatechange = function(){
+		//alert(XMLHttpRequestObject.readyState);
+		if((XMLHttpRequestObject.readyState==4)&&(XMLHttpRequestObject.status==200)){
+			document.getElementById("emaitzaPasahitza").innerHTML=XMLHttpRequestObject.responseText;
+		}
+			}
+				var email= document.getElementById("eposta");
 				var pasahitza= document.getElementById("pass");
-				XMLHttpRequestObject.open("GET", "soapBezEgiaztatuPassAJAX.php?pass="+pasahitza.value, true);
+				XMLHttpRequestObject.open("GET", "soapBezEgiaztatuPasahitzaAJAX.php?pass="+pasahitza.value+"&email="+email.value, true);
 				XMLHttpRequestObject.send();
 			
 			}
@@ -106,8 +112,8 @@ function argazkiaErakutsi() {
 			Izen-abizenak(*): <input type="text" name="izena" id="izena" required placeholder="Izena" pattern="[A-Z]([a-zA-Z]|\s[a-zA-Z])*" />
 			<input type="text" name="abizena1" id="abizena1" required placeholder="Abizena"  pattern="[a-zA-Z]([a-zA-Z]|\s[a-zA-Z])*"/>
 			<input type="text" name="abizena2" id="abizena2" required placeholder="Abizena" pattern="[a-zA-Z]([a-zA-Z]|\s[a-zA-Z])*" /><br/><br/>
-			Eposta elektronikoa(*): <input type="email" name="eposta" id="eposta" required pattern="[a-zA-Z]+[0-9]{3}\@ikasle\.ehu\.eu?s" placeholder="ehu001@ikasle.ehu.es" onchange="egiaztatuPosta();"/> <br/><br/>
-			Password(*): <input type="password" name="pass" id="pass" required  pattern=".{6,}" onchange="egiaztatuPasahitza();"/> <br/><br/>
+			Eposta elektronikoa(*): <input type="email" name="eposta" id="eposta" required pattern="[a-zA-Z]+[0-9]{3}\@ikasle\.ehu\.eu?s" placeholder="ehu001@ikasle.ehu.es" onchange="egiaztatuPosta();"/> <label id="emaitzaEposta" style="color:red;" name = "emaitzaEposta"></label> <br/><br/>
+			Password(*): <input type="password" name="pass" id="pass" required  pattern=".{6,}" onchange="egiaztatuPasahitza();"/> <label id="emaitzaPasahitza" style="color:red;" name = "emaitzaPasahitza"></label><br/><br/>
 			Errepikatu password-a(*): <input type="password" name="pass1" id="pass1" required onchange="return pasahitzBerdina()"/> <br/><br/>
 			Telefono zenbakia(*): <input type="tel" name="telefonoa" id="telefonoa" required pattern="(6|7|9)[0-9]{8}" placeholder="654123789"/> <br/><br/>
 			<label>Rola(*):</label><br/>
@@ -126,7 +132,6 @@ function argazkiaErakutsi() {
 			<input type="submit" value="Gorde"/>
 		</form>
 		<br/>
-					<div id="emaitzaEposta" name = "emaitzaEposta"></div>
 
 		<a  id="home" href='layout.php'>Hasiera</a>
 		</div>
