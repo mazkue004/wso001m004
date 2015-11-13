@@ -8,7 +8,11 @@
 	$result = $soapclient->call('pasahitza', array('x'=>$_GET['pass']));
 	
 	
-	echo "Pasahitza: ".$result;
+	if($result=='ez'){
+		echo '<input type = "hidden" id="pasa" value="EZ"/>';
+	}else{
+		echo 'Pasahitza ez da segurua <input type = "hidden" id="pasa" value="BAI"/>';
+	}
 
 
 ?>

@@ -9,9 +9,9 @@
 	
 	
 	if($result=="NO"){
-		echo "Ez zaude irakasgaian matrikulatuta";
+		echo 'Ez zaude irakasgaian matrikulatuta <input type = "hidden" id="matri" value="BAI"/>';
 	}else if ($result=="SI"){
-		echo "Ondo";
+		echo '<input type = "hidden" id="matri" value="EZ"/>';
 	}
 
 

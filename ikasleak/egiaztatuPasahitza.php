@@ -14,7 +14,18 @@
 	$ns);
 	
 	function pasahitza($x){
-		return $x;
+		$fitx = file('toppasswords.txt',true);
+		$cont = count($fitx);
+		$emaitza = 'ez';
+		
+		for($lerro = 0; $lerro != $cont; $lerro++){
+			if(trim($fitx[$lerro]) == $x){ //trim-->karaktere txarrak kentzeko
+				$emaitza='bai';
+			}
+		}
+		return $emaitza;
+		
+		
 	}
 
 	$HTTP_RAW_POST_DATA = isset ($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';
