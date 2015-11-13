@@ -4,11 +4,11 @@
 	//new nusoap_client
 	//
 	//new soap_server
-	$soapclient = new nusoap_client('egiaztatuPasahitza.php?wsdl', true);
-	$result = $soapclient->call('pasahitza', array('x'=>'$_GET[pass]'));
+	$soapclient = new nusoap_client('http://localhost:1234/wso001m004/ikasleak/egiaztatuPasahitza.php?wsdl', true);
+	$result = $soapclient->call('pasahitza', array('x'=>$_GET['pass']));
 	
 	
-	echo $result."kaixo";
+	echo "Pasahitza: ".$result;
 
 
 ?>
