@@ -44,7 +44,7 @@
 		<div id='page-wrap'>
 			<header class='main' id='h1'>
 				<span class="right"><a href='LogIn.php'>Login</a></span>
-				<span class="right"><a href='signUp5.html'>Sign up</a></span>
+				<span class="right"><a href='signUp.html'>Sign up</a></span>
 				<span class="right"><a href='IkusiErabiltzaileakArgazkiekin.php'>Ikusi erabiltzaileak</a></span>
 				<span class="right" style="display:none;"><a href="/logout">Logout</a></span>
 				<h2>Quiz: crazy questions</h2>
