@@ -1,4 +1,6 @@
-<?php session_start();?>
+<?php 
+	session_start();
+	?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -87,7 +89,7 @@
 			</form>
 			<br/>
 			<a  id="seeXMLQuestions" href='seeXMLQuestions.php'>See XML questions</a><br/>
-			<a  id="home" href='layout.php'>Hasiera</a>
+			<a  id="home" href='layout.php'>Logout</a>
 		</div>
 		
 		<div id="galderak" class="container-fluid inner">

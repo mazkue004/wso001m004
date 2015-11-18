@@ -1,5 +1,6 @@
 <?php 
 	session_start();
+	
 	mysql_connect("localhost","root","") or die(mysql_error());
 	mysql_select_db("quiz") or die(mysql_error());
 	/*mysql_connect("mysql.hostinger.es","u875011436_mazk","123456") or die(mysql_error());
@@ -9,7 +10,7 @@
 	
 	ini_set('date.timezone', 'Europe/Berlin');
 	$time1 = date('H:i:s',time());
-	$ekin="INSERT INTO ekintzak(Kid, Eposta, Emota, Eordua, Kip)VALUES('000','$_SESSION[eposta]','galdera kontsultatu', '$time1', '')";
+	$ekin="INSERT INTO ekintzak(Eposta, Emota, Eordua, Kip)VALUES('$_SESSION[eposta]','galdera kontsultatu', '$time1', '')";
 	if(!mysql_query($ekin)){
 		die('Errorea:  '.mysql_error());
 	}
@@ -23,7 +24,7 @@
 	
 	$galde=mysql_query($galdera);
 	$gald=mysql_fetch_array($galde);
-	if(!isset($gald[0])){
+	if((!isset($gald[0])) || ($_SESSION['rola']!='irakasle')){
 		echo '</table></div><input type="submit" value="Galdera editatu" disabled/></form>';
 	}else{
 		echo '</table></div><input type="submit" value="Galdera editatu"/></form>';
@@ -49,6 +50,7 @@
 		</style>		
 	</head>
 	<body>
-	<input type="button" value="Atzera" onclick="history.back()"/>		
+	<!--<input type="button" value="Atzera" onclick="history.back()"/>-->
+	<a id="home" href="layout.php">Logout</a>
 	</body>
 </html>

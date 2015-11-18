@@ -11,7 +11,7 @@
 	
 	//Eposta konprobatu
 	if(isset($_POST['eposta']) && isset($_POST['pass'])){
-		if(!filter_var($_POST['eposta'], FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z]+[0-9]{3}\@ikasle\.ehu\.eu?s/"))) === false){
+		if((!filter_var($_POST['eposta'], FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z]+[0-9]{3}\@ikasle\.ehu\.eu?s/"))) === false) || (!filter_var($_POST['eposta'], FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z]+[0-9]{3}\@ikasle\.ehu\.eu?s/"))) === true)){
 			$erab = mysql_query("select Eposta,Pasahitza,Rola from erabiltzaile where Eposta='$_POST[eposta]'");
 			if($erabiltzaile=mysql_fetch_array($erab)){
 				$pasahitza = $erabiltzaile['Pasahitza'];
@@ -87,6 +87,7 @@
 						exit;
 					}else{
 						$_SESSION['eposta']=$_POST['eposta'];
+						$_SESSION['rola']='irakasle';
 						header("Location: reviewingQuizzes.php");
 						exit;
 					}
