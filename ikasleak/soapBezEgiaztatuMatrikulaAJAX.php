@@ -11,7 +11,7 @@
 	if($result=='EZ'){
 		echo 'Ez zaude irakasgaian matrikulatuta <input type = "hidden" id="matri" value="BAI"/>';
 	}else if ($result=='BAI'){
-		echo 'dfasdf<input type = "hidden" id="matri" value="EZ"/>';
+		echo '<input type = "hidden" id="matri" value="EZ"/>';
 	}
 
 

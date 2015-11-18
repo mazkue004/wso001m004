@@ -5,7 +5,6 @@
 	/*mysql_connect("mysql.hostinger.es","u875011436_mazk","123456") or die(mysql_error());
 	mysql_select_db("u875011436_quiz") or die(mysql_error());*/
 	
-	$galdera=mysql_query("select * from galdera");
 	
 	
 	ini_set('date.timezone', 'Europe/Berlin');
@@ -16,11 +15,21 @@
 	}
 	echo '<form id="galdEd" name="galdEd" method="POST" action="galderaEditatu.php"><div class="container-fluid inner"><table class="tableizer-table">';
 	echo '<tr class="tableizer-firstrow"><th>  </th><th> Erabiltzailea </th><th> Galdera </th><th> Erantzuna </th><th> Konplexutasuna </th></tr>';
-	while ($row = mysql_fetch_array($galdera)){
-		echo '<tr>'.'<td><input type="radio" value='.$row['Gzenb'].' name="auk"></td><td>'.$row['Eposta'].'</td>'.'<td>'.$row['Gtestua'].'</td>'.'<td>'.$row['Gerantzuna'].'</td>'.'<td>'. $row['Zailtasuna'].'</td> </tr>';
+	$galdera="select * from galdera";
+	$galde1=mysql_query($galdera);
+	while ($row = mysql_fetch_array($galde1)){
+		echo '<tr>'.'<td><input type="radio" value='.$row['Gzenb'].' name="auk" checked></td><td>'.$row['Eposta'].'</td>'.'<td>'.$row['Gtestua'].'</td>'.'<td>'.$row['Gerantzuna'].'</td>'.'<td>'. $row['Zailtasuna'].'</td> </tr>';
 	}
+	
+	$galde=mysql_query($galdera);
+	$gald=mysql_fetch_array($galde);
+	if(!isset($gald[0])){
+		echo '</table></div><input type="submit" value="Galdera editatu" disabled/></form>';
+	}else{
+		echo '</table></div><input type="submit" value="Galdera editatu"/></form>';
+	}
+	
 	mysql_close();
-	echo '</table></div><input type="submit" value="Galdera editatu"/></form>';
 ?>
 
 <html>
@@ -40,5 +49,6 @@
 		</style>		
 	</head>
 	<body>
+	<input type="button" value="Atzera" onclick="history.back()"/>		
 	</body>
 </html>
