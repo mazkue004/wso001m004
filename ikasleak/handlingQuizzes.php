@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -34,13 +35,13 @@
 				var balioa;
 				if (document.getElementById('r1').checked) {
 					balioa = document.getElementById('r1').value;
-				}else if (document.getElementById('r2').checked) {
+					}else if (document.getElementById('r2').checked) {
 					balioa = document.getElementById('r2').value;
-				}else if (document.getElementById('r3').checked) {
+					}else if (document.getElementById('r3').checked) {
 					balioa = document.getElementById('r3').value;
-				}else  if(document.getElementById('r4').checked){
+					}else  if(document.getElementById('r4').checked){
 					balioa = document.getElementById('r4').value;
-				}else{
+					}else{
 					balioa = document.getElementById('r5').value;
 				}
 				XMLHttpRequestObject.open("GET", "galderaGehitu.php?eposta="+email.value+"&konexioa="+konexi.value+"&galdera="+gald.value+"&erantzuna="+eran.value+"&balioa="+balioa, true);
@@ -54,18 +55,12 @@
 				XMLHttpRequestObject.send();
 			}
 						
-			function erakutsiKopurua(){
-			
-				setInterval(function(){
+			setInterval(function(){
 				var email= document.getElementById("emaila");
 				XMLHttpRequestObject.open("GET", "zenbatuGalderak.php?eposta="+email.value, true);
 				XMLHttpRequestObject.send();
 				
-				},5000);
-			}
-			
-			
-			
+			},5000);	
 		</script>
 	</head>
 	<body>
@@ -75,9 +70,9 @@
 		
 		<div class="container-fluid inner" >
 			<form id="erregistro" name="erregistro" method="POST" action="InsertQuestion.php" enctype="multipart/form-data">
-				<input type="hidden" name="emaila" id="emaila" value="<?php echo $_GET['eposta']?>"/>
-				<input type="hidden" name="kon" id="kon" value="<?php echo $_GET['konexioa']?>"/>
-				Galdera(*): <input type="text" name="galdera" id="galdera" placeholder="Galdera" required onclick = "erakutsiKopurua()" /><br/><br/>
+				<input type="hidden" name="emaila" id="emaila" value="<?php echo $_SESSION['eposta']?>"/>
+				<input type="hidden" name="kon" id="kon" value="<?php echo $_SESSION['konexioa']?>"/>
+				Galdera(*): <input type="text" name="galdera" id="galdera" placeholder="Galdera" required /><br/><br/>
 				Erantzuna(*): <input type="text" name="erantzuna" id="erantzuna" placeholder="erantzun laburra"  pattern="[a-zA-Z0-9]([a-zA-Z0-9]|\s[a-zA-Z0-9])*" required/><br/><br/>
 				
 				<label>Zailtasun maila(*):</label>

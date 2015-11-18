@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	mysql_connect("localhost","root","") or die(mysql_error());
 	mysql_select_db("quiz") or die(mysql_error());
 	/*mysql_connect("mysql.hostinger.es","u875011436_mazk","123456") or die(mysql_error());
@@ -79,11 +80,14 @@
 						}
 						echo 'Ondo gorde da<br/>';
 						mysql_close();
-						//header("Location: InsertQuestion.php?eposta=".$_POST['eposta']."&konexioa=".$time1);
-						header("Location: handlingQuizzes.php?eposta=".$_POST['eposta']."&konexioa=".$time1);
+						$_SESSION['eposta']=$_POST['eposta'];
+						$_SESSION['konexioa']=$time1;
+						//header("Location: handlingQuizzes.php?eposta=".$_POST['eposta']."&konexioa=".$time1);
+						header("Location: handlingQuizzes.php");
 						exit;
 					}else{
-						header("Location: getUserInform.html");
+						$_SESSION['eposta']=$_POST['eposta'];
+						header("Location: reviewingQuizzes.php");
 						exit;
 					}
 					} else if($em == 1){

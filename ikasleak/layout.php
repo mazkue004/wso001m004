@@ -37,7 +37,6 @@
 				?>
 			document.getElementById("s1").innerHTML='<div><table><tr><td><strong> Galdera </strong></td><td><strong> Zailtasuna </strong></td></tr><?php while ($row = mysql_fetch_array($galdera)){echo '<tr><td>'.$row['Gtestua'].'</td> <td>'. $row['Zailtasuna'].'</td> </tr>';}mysql_close();?></table></div>';
 		}
-		//ini_set('date.timezone', 'Europe/Berlin');$time1 = date('H:i:s',time());$ekin="INSERT INTO ekintzak(Kid, Eposta, Emota, Eordua, Kip)VALUES('000','anonimo', 'galdera kontsultatu', '$time1', '$_SERVER[HTTP_CLIENT_IP]')";if(!mysql_query($ekin)){die('Errorea:  '.mysql_error());}
 		</script>
 	</head>
 	<body>
@@ -53,24 +52,8 @@
 				<span><a href='layout.php'>Hasiera</a></span>
 				<span><a href="javascript:gald();">Quizzes</a></span>
 				<span><a href='credits.html'>Credits</a></span>
-				<span><a href='seeQuestions.php'>See questions XSL</a></span>
 			</nav>
-			<section class="main" id="s1">
-				<!--<div>
-					<table>
-						<tr>
-							<td><strong>Galdera</strong></td><td><strong>Zailtasuna</strong></td>
-						</tr>	
-							
-					<?php
-						//while ($row = mysql_fetch_array($galdera)){
-							//echo '<tr><td>'.$row['Gtestua'].'</td> <td>'. $row['Zailtasuna'].'</td> </tr>';
-						//}
-						//mysql_close();
-					?>
-					</table>
-				</div>-->
-			</section>
+			<section class="main" id="s1"></section>
 			<footer class='main' id='f1'>
 				<p><a href="http://en.wikipedia.org/wiki/Quiz" target="_blank">What is a Quiz?</a></p>
 				<a href='https://github.com'>Link GITHUB</a>

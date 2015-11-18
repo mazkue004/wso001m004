@@ -4,14 +4,14 @@
 	//new nusoap_client
 	//
 	//new soap_server
-	$soapclient = new nusoap_client('http://sw14.hol.es/ServiciosWeb/comprobarmatricula.php?wsdl', true);
-	$result = $soapclient->call('comprobar', array('x'=>'$_GET[email]'));
+	$soapclient = new nusoap_client('http://wsrosaas.hol.es/webZerbitzuak/egiaztatuMatrikula.php?wsdl', true);
+	$result = $soapclient->call('egiaztatu', array('x'=>$_GET['email']));
 	
 	
-	if($result=="NO"){
+	if($result=='EZ'){
 		echo 'Ez zaude irakasgaian matrikulatuta <input type = "hidden" id="matri" value="BAI"/>';
-	}else if ($result=="SI"){
-		echo '<input type = "hidden" id="matri" value="EZ"/>';
+	}else if ($result=='BAI'){
+		echo 'dfasdf<input type = "hidden" id="matri" value="EZ"/>';
 	}
 
 

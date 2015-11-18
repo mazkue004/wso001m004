@@ -1,5 +1,5 @@
 <?php
-
+	
 	require_once('/lib/nusoap.php');
 	require_once('/lib/class.wsdlcache.php');
 	
@@ -9,11 +9,11 @@
 	$server->wsdl->schemaTargetNamespace = $ns;
 	
 	$server->register('pasahitza', 
-	array('x'=>'xsd:string'), 
+	array('x'=>'xsd:string','y'=>'xsd:string'), 
 	array('z'=>'xsd:string'),
 	$ns);
 	
-	function pasahitza($x){
+	function pasahitza($x,$y){
 		$fitx = file('toppasswords.txt',true);
 		$cont = count($fitx);
 		$emaitza = 'ez';
@@ -23,11 +23,13 @@
 				$emaitza='bai';
 			}
 		}
+		if(($y!="") &&($x!= $y)){
+			$emaitza='ezez';
+		}
 		return $emaitza;
 		
-		
 	}
-
+	
 	$HTTP_RAW_POST_DATA = isset ($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';
 	$server->service($HTTP_RAW_POST_DATA);
 ?>

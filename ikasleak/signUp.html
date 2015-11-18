@@ -25,14 +25,15 @@
 				var p = document.getElementById('pasa');
 				
 				if(m.value=="BAI"){
-					alert("ez zaude matrikulatuta");
+					alert("Ez zaude matrikulatuta");
 					return false;
 				}
 				
-				if(p.value=="BAI"){
-					alert("pasahitza begiratu");
+				if((p.value=="BAI")||(p.value=="EZEZ")){
+					alert("Pasahitza begiratu");
 					return false;
 				}
+				
 				
 								
 			}
@@ -101,13 +102,14 @@
 			function egiaztatuPasahitza(){
 				XMLHttpRequestObject = new XMLHttpRequest();
 				XMLHttpRequestObject.onreadystatechange = function(){
-					alert(XMLHttpRequestObject.readyState);
+					//alert(XMLHttpRequestObject.readyState);
 					if((XMLHttpRequestObject.readyState==4)&&(XMLHttpRequestObject.status==200)){
 						document.getElementById("emaitzaPasahitza").innerHTML=XMLHttpRequestObject.responseText;
 					}
 				}
 				var pasahitza= document.getElementById("pass");
-				XMLHttpRequestObject.open("GET", "soapBezEgiaztatuPasahitzaAJAX.php?pass="+pasahitza.value, true);
+				var pasahitza1= document.getElementById("pass1");
+				XMLHttpRequestObject.open("GET", "soapBezEgiaztatuPasahitzaAJAX.php?pass="+pasahitza.value+"&pass1="+pasahitza1.value, true);
 				XMLHttpRequestObject.send();
 			}
 			
@@ -124,7 +126,7 @@
 				<input type="text" name="abizena2" id="abizena2" required placeholder="Abizena" pattern="[a-zA-Z]([a-zA-Z]|\s[a-zA-Z])*" /><br/><br/>
 				Eposta elektronikoa(*): <input type="email" name="eposta" id="eposta" required pattern="[a-zA-Z]+[0-9]{3}\@ikasle\.ehu\.eu?s" placeholder="ehu001@ikasle.ehu.es" onchange="egiaztatuPosta();"/> <label id="emaitzaEposta" style="color:red;" name = "emaitzaEposta"></label> <br/><br/>
 				Password(*): <input type="password" name="pass" id="pass" required  pattern=".{6,}" onchange="return egiaztatuPasahitza();"/> <label id="emaitzaPasahitza" style="color:red;" name = "emaitzaPasahitza"></label><br/><br/>
-				Errepikatu password-a(*): <input type="password" name="pass1" id="pass1" required onchange="return pasahitzBerdina()"/> <br/><br/>
+				Errepikatu password-a(*): <input type="password" name="pass1" id="pass1" required onchange="return egiaztatuPasahitza()"/> <br/><br/>
 				Telefono zenbakia(*): <input type="tel" name="telefonoa" id="telefonoa" required pattern="(6|7|9)[0-9]{8}" placeholder="654123789"/> <br/><br/>
 				<label>Rola(*):</label><br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="rola" value="ikasle" checked><label for="ikasle">Ikasle</label><br/>
