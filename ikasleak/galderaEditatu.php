@@ -55,7 +55,7 @@
 			<tr><td><?php echo $row['Eposta']?></td><td><input type="text" id="Gtestua" value='<?php echo $row['Gtestua']?>'></td><td><input type="text" id="Gerantzuna" value='<?php echo $row['Gerantzuna']?>'></td><td><input type="text" id="Zailtasuna" value='<?php echo $row['Zailtasuna']?>'></td> </tr>
 		</table>
 		<input type="button" value="Galdera editatu" onclick="editatuGaldera()"/>		
-		<input type="button" value="Atzera" href="reviewingQuizzes.php"/>		
+		<input type="button" value="Atzera" onclick="history.back()"/>		
 		</div>
 		<div id="galderak" class="container-fluid inner"/>
 		
