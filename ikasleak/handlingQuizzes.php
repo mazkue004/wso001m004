@@ -71,7 +71,7 @@
 		
 		
 		<div class="container-fluid inner" >
-			<form id="erregistro" name="erregistro" method="POST" action="InsertQuestion.php" enctype="multipart/form-data">
+			<form id="erregistro" name="erregistro" method="POST" action="InsertQuestion.php" >
 				<input type="hidden" name="emaila" id="emaila" value="<?php echo $_SESSION['eposta']?>"/>
 				<input type="hidden" name="kon" id="kon" value="<?php echo $_SESSION['konexioa']?>"/>
 				Galdera(*): <input type="text" name="galdera" id="galdera" placeholder="Galdera" required /><br/><br/>
