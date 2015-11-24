@@ -126,6 +126,7 @@ insert into animazioa values(5,4,450,45);/*d bull*/
 insert into animazioa values(6,4,550,45);/*T,m,t*/
 insert into animazioa values(6,3,1000,180);/*P,p,m*/
 insert into animazioa values(7,1,450,45);/*o v*/
+insert into animazioa values(7,2,450,45);
 
 
 insert into karaokea values(1,1);/*Karaokea orion*/
@@ -214,13 +215,45 @@ select * from menua natural join ezaugarriak;
 
 
 
+create view menu_arrunta (kodea,mota) as select Izena,  count(mota) from enpresa natural join menua_bezeroa natural join menua group by(izena) union select Izena, count(mota) from pertsona_pribatua natural join menua_bezeroa natural join menua group by(izena);  
+
+insert into menu_arrunta values ('Maitane', 4)
+            *
+ERROR en línea 1:
+ORA-01732: operación de manipulación de datos no válida en esta vista
+
+select distinct izena, telefonoa, kontratuData  from  pertsona_pribatua natural join bezeroa natural join menua_bezeroa inner join menu_arrunta on menu_arrunta.kodea=pertsona_pribatua.izena
+union select distinct izena, telefonoa, kontratuData  from  enpresa natural join bezeroa natural join menua_bezeroa inner join menu_arrunta on menu_arrunta.kodea=enpresa.izena ;
+
+IZENA                                               TELEFONOA KONTRATU
+-------------------------------------------------- ---------- --------
+Elhuyar                                             658974123 12/09/15
+Jonxa                                               678945213 12/11/15
 
 
+alter table bezeroa add constraint telef check(telefonoa >599999999 and telefonoa<700000000 or telefonoa>899999999 and telefonoa<1000000000) enable novalidate;
 
+insert into bezeroa values (7, 800000000)
+*
+ERROR en línea 1:
+ORA-02290: restricción de control (DBDE07.TELEF) violada
 
+alter table pailazoak add constraint pailazoMurriz check (TaldeIzena like '% eta %')novalidate;
 
+insert into pailazoak values('Poxpolo', 7,2)
+*
+ERROR en línea 1:
+ORA-02290: restricción de control (DBDE07.PAILAZOMURRIZ) violada
 
+alter table menua add constraint menuMurriz check (mota<>'Ezkontza' or menuPrezioa>50);
+update menua set menuPrezioa=30 where mota='Ezkontza';
+*
+ERROR en línea 1:
+ORA-02290: restricción de control (DBDE07.MENUMURRIZ) violada
 
+update menua set menuPrezioa=55 where mota='Ezkontza';
+
+insert into menua values (8,'Zeliakoa',20);
 
 
 
