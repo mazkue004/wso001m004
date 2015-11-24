@@ -1,4 +1,3 @@
-/*Taulak sortu*/
 create table bezeroa (KontratuKodea int, Telefonoa int);
 alter table bezeroa add constraint gakoaBezeroa primary key (KontratuKodea);
 
@@ -255,5 +254,60 @@ update menua set menuPrezioa=55 where mota='Ezkontza';
 
 insert into menua values (8,'Zeliakoa',20);
 
+create view animazio_kop as select count(animazioKodea) as zenbatAnimazio from ekitaldia natural join animazioa;
+
+create view eskainitako_menu_kop as select count(menuKodea) as zenbatMenu from ekitaldia natural join ekitaldi_menua natural join menua;
+
+create view kontratatutako_bez_kop as select count(kontratuKodea) as zenbatKontratu from ekitaldia natural join ekitaldi_kontratu_bezero natural join bezeroa;
 
 
+create or replace trigger t1
+after insert on animazioa
+for each row
+when (new.iraupena>180)
+begin
+insert into animazioa values(:new.AnimazioKodea, :new.EkitaldiKodea, :new.AnimazioPrezioa+(:new.Iraupena-180),180);
+end;
+
+insert into animazioa values (10,1,50,190)
+            *
+ERROR en línea 1:
+ORA-04091: la tabla DBDE07.ANIMAZIOA está mutando, puede que el disparador/la función no puedan verla
+ORA-06512: en "DBDE07.T1", línea 2
+ORA-04088: error durante la ejecución del disparador 'DBDE07.T1'
+
+
+CREATE OR REPLACE TRIGGER t2
+BEFORE INSERT OR UPDATE ON Herria
+FOR EACH ROW
+begin
+  if(:new.biztanlekop<500)
+  then
+    raise_application_error(-20001, 'herri txikiegia da ekitaldi bat egiteko');
+  end if;
+end;
+
+insert into herria values(20100, 'izena', 100)
+            *
+ERROR en línea 1:
+ORA-20001: herri txikiegia da ekitaldi bat egiteko
+ORA-06512: en "DBDE07.T2", línea 4
+ORA-04088: error durante la ejecución del disparador 'DBDE07.T2'
+
+
+create or replace trigger t3
+after update on menua
+for each row
+begin
+if (:old.MenuPrezioa > :new.menuPrezioa)
+then
+raise_application_error(-20001,'Menu prezioa ezin da txikitu');
+end if;
+end;
+
+update menua
+       *
+ERROR en línea 1:
+ORA-20001: Menu prezioa ezin da txikitu
+ORA-06512: en "DBDE07.T3", línea 4
+ORA-04088: error durante la ejecución del disparador 'DBDE07.T3'
