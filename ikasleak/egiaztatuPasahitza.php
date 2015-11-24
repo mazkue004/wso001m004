@@ -1,7 +1,7 @@
 <?php
 	
-	require_once('/lib/nusoap.php');
-	require_once('/lib/class.wsdlcache.php');
+	require_once('./lib/nusoap.php');
+	require_once('./lib/class.wsdlcache.php');
 	
 	$ns = "http://localhost:1234/wso001m004/ikasleak/egiaztatuPasahitza.php?wsdl";
 	$server = new soap_server;
