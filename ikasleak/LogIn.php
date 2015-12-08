@@ -12,7 +12,8 @@
 	//Eposta konprobatu
 	if(isset($_POST['eposta']) && isset($_POST['pass'])){
 		if((!filter_var($_POST['eposta'], FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z]+[0-9]{3}\@ikasle\.ehu\.eu?s/"))) === false) || (!filter_var($_POST['eposta'], FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z]+[0-9]{3}\@ehu\.eu?s/"))) === false)){
-			$erab = mysql_query("select Eposta,Pasahitza,Rola from erabiltzaile where Eposta='$_POST[eposta]'");
+			$eposta=$_POST['eposta'];
+			$erab = mysql_query("select Eposta,Pasahitza,Rola from erabiltzaile where Eposta='$eposta'");
 			if($erabiltzaile=mysql_fetch_array($erab)){
 				$pasahitza = $erabiltzaile['Pasahitza'];
 				$rola = $erabiltzaile['Rola'];
